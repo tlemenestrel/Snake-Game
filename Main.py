@@ -29,8 +29,14 @@ while continuer:
             continuer = 0
         if event.type == KEYDOWN:
             if event.key == K_UP:
+                position_perso1 = position_perso1.move(0,-10)
+            if event.key == K_DOWN:
                 position_perso1 = position_perso1.move(0,10)
+            if event.key == K_LEFT:
+                position_perso1 = position_perso1.move(-10,0)
+            if event.key == K_RIGHT:
+                position_perso1 = position_perso1.move(10,0)
 
-    Couverture.blit(Couverture, (0,0))	
-    Couverture.blit(Personnage1, position_perso1)
+    fenetre.blit(Couverture, (0,0))	
+    fenetre.blit(Personnage1, position_perso1)
     pygame.display.flip()
