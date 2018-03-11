@@ -6,15 +6,15 @@ from pygame.locals import *
 pygame.init()
 
 #Création de la fenêtre
-fenetre = pygame.display.set_mode((640, 480))
+fenetre = pygame.display.set_mode((700, 700))
 
 Couverture = pygame.image.load("/Users/TLM/Documents/Projet ISN/fond_noir.jpg").convert()
-Couverture.blit(Couverture, (0,0))
+fenetre.blit(Couverture, (0,0))
 
-Personnage1 = pygame.image.load("/Users/TLM/Documents/Projet ISN/Toad.jpeg").convert_alpha()
+Personnage1 = pygame.image.load("/Users/TLM/Documents/Projet ISN/Serpent2.png").convert_alpha()
 #Chargement et collage du personnage
+fenetre.blit(Personnage1, (250,250))
 position_perso1 = Personnage1.get_rect()
-Couverture.blit(Personnage1, position_perso1)
 
 #Rafraîchissement de l'écran
 pygame.display.flip()
@@ -29,8 +29,8 @@ while continuer:
             continuer = 0
         if event.type == KEYDOWN:
             if event.key == K_UP:
-                position_perso1.move(0,3)
+                position_perso1 = position_perso1.move(0,10)
 
-Couverture.blit(Couverture, (0,0))	
-Couverture.blit(Personnage1, position_perso1)
-pygame.display.flip()
+    Couverture.blit(Couverture, (0,0))	
+    Couverture.blit(Personnage1, position_perso1)
+    pygame.display.flip()
