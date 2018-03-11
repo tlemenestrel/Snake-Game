@@ -8,6 +8,8 @@ pygame.init()
 #Création de la fenêtre
 fenetre = pygame.display.set_mode((700, 700))
 
+pygame.display.set_caption("Snake")
+
 Couverture = pygame.image.load("/Users/TLM/Documents/Projet ISN/fond_noir.jpg").convert()
 fenetre.blit(Couverture, (0,0))
 
@@ -23,10 +25,13 @@ pygame.display.flip()
 continuer = 1
 
 #Boucle infinie
-while continuer:
-    for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
-        if event.type == QUIT:     #Si un de ces événements est de type QUIT
-            continuer = 0
+while continuer:                   
+    for event in pygame.event.get(): #On parcours la liste de tous les événements reçus
+        if event.type == QUIT:
+               continuer = 0
+        if event.type == KEYUP :
+            if event.key == K_ESCAPE:
+                continuer = 0
         if event.type == KEYDOWN:
             if event.key == K_UP:
                 position_perso1 = position_perso1.move(0,-10)
@@ -40,3 +45,5 @@ while continuer:
     fenetre.blit(Couverture, (0,0))	
     fenetre.blit(Personnage1, position_perso1)
     pygame.display.flip()
+
+pygame.quit()
