@@ -3,6 +3,7 @@
 
 import pygame
 from pygame.locals import *
+from random import randint
 
 
 
@@ -66,7 +67,7 @@ while continuer:
         if event.type == USEREVENT+1
         
             Bananne = pygame.image.load ("/Users/TLM/Documents/ProjetISN/Banane.png").convert_alpha
-            fenetre.blit(Banane, (randomint,randomint))                      
+            fenetre.blit(Banane, (randomint(0,700),randomint(0, 700)))                 
         if event.type == QUIT:
 
                continuer = 0
