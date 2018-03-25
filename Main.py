@@ -26,7 +26,7 @@ pygame.display.set_caption("Snake")
 
 #On charge un fond noir avec lequel on remplit la fenêtre
 
-Couverture = pygame.image.load("fond_noir.jpg").convert()
+Couverture = pygame.image.load("/Users/TLM/Documents/ProjetISN/fond_noir.jpg").convert()
 
 fenetre.blit(Couverture, (0,0))
 
@@ -34,7 +34,7 @@ fenetre.blit(Couverture, (0,0))
 
 # On charge un personnage qu'on colle sur la fenêtre par dessus le fond noir
 
-Personnage1 = pygame.image.load("Serpent2.png").convert_alpha()
+Personnage1 = pygame.image.load("/Users/TLM/Documents/ProjetISN/Serpent2.png").convert_alpha()
 
 fenetre.blit(Personnage1, (250,250))
 
@@ -50,7 +50,7 @@ position_perso1 = Personnage1.get_rect()
 
 pygame.display.flip()
 
-
+pygame.time.set_timer(USEREVENT+1, 100)
 
 #Variable qui continue la boucle si = 1, stoppe si = 0
 
@@ -63,7 +63,10 @@ continuer = 1
 while continuer:
 
     for event in pygame.event.get(): #On parcours la liste de tous les événements reçus
-
+        if event.type == USEREVENT+1
+        
+            Bananne = pygame.image.load ("/Users/TLM/Documents/ProjetISN/Banane.png").convert_alpha
+            fenetre.blit(Banane, (randomint,randomint))                      
         if event.type == QUIT:
 
                continuer = 0
