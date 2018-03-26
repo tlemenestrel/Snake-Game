@@ -1,4 +1,7 @@
 
+
+
+
 #Importation des bibliothèques nécessaires
 
 import pygame
@@ -51,7 +54,8 @@ position_perso1 = Personnage1.get_rect()
 
 pygame.display.flip()
 
-pygame.time.set_timer(USEREVENT+1, 100)
+deplacement = USEREVENT+1
+pygame.time.set_timer(deplacement,150)
 
 #Variable qui continue la boucle si = 1, stoppe si = 0
 
@@ -64,10 +68,10 @@ continuer = 1
 while continuer:
 
     for event in pygame.event.get(): #On parcours la liste de tous les événements reçus
-        if event.type == USEREVENT+1
-        
-            Bananne = pygame.image.load ("/Users/TLM/Documents/ProjetISN/Banane.png").convert_alpha
-            fenetre.blit(Banane, (randomint(0,700),randomint(0, 700)))                 
+        runningdroit = False
+        runningauche = False
+        runningbas = False
+        runninghaut = False                      
         if event.type == QUIT:
 
                continuer = 0
@@ -79,36 +83,59 @@ while continuer:
                 continuer = 0
 
         # Ensemble des touches qui permettent de déplacer le personnage
+        
+
 
         if event.type == KEYDOWN:
-
+    
+    
             if event.key == K_UP:
-                for i in range (1,300):
-                    position_perso1 = position_perso1.move(0,-1)
-                    fenetre.blit(Personnage1, position_perso1)
-                    pygame.time.delay(10)
-                    pygame.display.flip()
+                runninghaut = True
+                runningbas = False
+                runningdroite = False
+                runninggauche = False
+                while runninghaut == True:
+                    for i in range (1,300):
+                        position_perso1 = position_perso1.move(0,-1)
+                        fenetre.blit(Personnage1, position_perso1)
+                        pygame.time.delay(10)
+                        pygame.display.flip()
 
             if event.key == K_DOWN:
-              for i in range (1,300):
-                    position_perso1 = position_perso1.move(0,1)
-                    fenetre.blit(Personnage1, position_perso1)
-                    pygame.time.delay(10)
-                    pygame.display.flip()
+                runninghaut = False
+                runningbas = True
+                runningdroite = False
+                runninggauche = False
+                while runningbas = True
+                    for i in range (1,300):
+                         position_perso1 = position_perso1.move(0,1)
+                         fenetre.blit(Personnage1, position_perso1)
+                         pygame.time.delay(10)
+                         pygame.display.flip()
 
             if event.key == K_LEFT:
-                for i in range (1,300):
-                    position_perso1 = position_perso1.move(-1,0)
-                    fenetre.blit(Personnage1, position_perso1)
-                    pygame.time.delay(10)
-                    pygame.display.flip()
+                runninghaut = False
+                runningbas = False
+                runningdroite = False
+                runninggauche = True
+                while runninggauche = True
+                    for i in range (1,300):
+                        position_perso1 = position_perso1.move(-1,0)
+                        fenetre.blit(Personnage1, position_perso1)
+                        pygame.time.delay(10)
+                        pygame.display.flip()
 
             if event.key == K_RIGHT:
-                for i in range (1,300):
-                    position_perso1 = position_perso1.move(1,0)
-                    fenetre.blit(Personnage1, position_perso1)
-                    pygame.time.delay(10)
-                    pygame.display.flip()
+                runninghaut = False
+                runningbas = False
+                runningdroite = True
+                runninggauche = False
+                while runningdroit = True
+                    for i in range (1,300):
+                        position_perso1 = position_perso1.move(1,0)
+                        fenetre.blit(Personnage1, position_perso1)
+                        pygame.time.delay(10)
+                        pygame.display.flip()
 
 
 
@@ -123,7 +150,4 @@ while continuer:
     fenetre.blit(Personnage1, position_perso1)
 
     pygame.display.flip()
-
-
-
-pygame.quit()
+    pygame.quit()
