@@ -106,7 +106,7 @@ while continuer:
                 runningbas = True
                 runningdroite = False
                 runninggauche = False
-                while runningbas = True
+                while runningbas == True:
                     for i in range (1,300):
                          position_perso1 = position_perso1.move(0,1)
                          fenetre.blit(Personnage1, position_perso1)
@@ -118,7 +118,7 @@ while continuer:
                 runningbas = False
                 runningdroite = False
                 runninggauche = True
-                while runninggauche = True
+                while runninggauche == True:
                     for i in range (1,300):
                         position_perso1 = position_perso1.move(-1,0)
                         fenetre.blit(Personnage1, position_perso1)
@@ -130,7 +130,7 @@ while continuer:
                 runningbas = False
                 runningdroite = True
                 runninggauche = False
-                while runningdroit = True
+                while runningdroit == True:
                     for i in range (1,300):
                         position_perso1 = position_perso1.move(1,0)
                         fenetre.blit(Personnage1, position_perso1)
