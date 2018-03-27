@@ -1,32 +1,20 @@
-
-
-
-
 #Importation des bibliothèques nécessaires
 
 import pygame
 from pygame.locals import *
 from random import randint
 
-
-
 #Initialisation de la bibliothèque Pygame
 
 pygame.init()
-
-
 
 #Création de la fenêtre
 
 fenetre = pygame.display.set_mode((700, 700))
 
-
-
 #On donne un nom à la fenêtre
 
 pygame.display.set_caption("Snake")
-
-
 
 #On charge un fond noir avec lequel on remplit la fenêtre
 
@@ -34,21 +22,15 @@ Couverture = pygame.image.load("/Users/TLM/Documents/ProjetISN/fond_noir.jpg").c
 
 fenetre.blit(Couverture, (0,0))
 
-
-
 # On charge un personnage qu'on colle sur la fenêtre par dessus le fond noir
 
 Personnage1 = pygame.image.load("/Users/TLM/Documents/ProjetISN/Serpent2.png").convert_alpha()
 
 fenetre.blit(Personnage1, (250,250))
 
-
-
 # On récupère sa position pour s'en servir plus tard
 
 position_perso1 = Personnage1.get_rect()
-
-
 
 #Rafraîchissement de l'écran
 
@@ -60,8 +42,6 @@ pygame.time.set_timer(deplacement,150)
 #Variable qui continue la boucle si = 1, stoppe si = 0
 
 continuer = 1
-
-
 
 #Boucle infinie
 
@@ -84,8 +64,6 @@ while continuer:
 
         # Ensemble des touches qui permettent de déplacer le personnage
         
-
-
         if event.type == KEYDOWN:
     
     
@@ -137,13 +115,9 @@ while continuer:
                         pygame.time.delay(10)
                         pygame.display.flip()
 
-
-
     # On re-colle la fenêtre
 
     fenetre.blit(Couverture, (0,0))
-
-
 
     # On recolle le personnage à sa nouvelle position
 
