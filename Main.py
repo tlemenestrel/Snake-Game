@@ -1,3 +1,8 @@
+# Snake - v0.1
+# Ce script est un programme du jeu snake
+# License libre CC
+# Colin Laganier - Thomas Lemenestrel - 2018.03.27
+
 #Importation des bibliothèques nécessaires
 
 import pygame
