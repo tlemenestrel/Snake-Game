@@ -30,7 +30,7 @@ fenetre.blit(couverture, (0,0))
 
 # On charge un personnage qu'on colle sur la fenetre par dessus le fond noir
 
-Personnage1 = pygame.image.load("C:\Users\lemenestrel.thomas\Desktop\ISN\head.png").convert_alpha()
+Personnage1 = pygame.image.load("head.png").convert_alpha()
 Personnage1 = pygame.transform.scale(Personnage1, (30,30))
 fenetre.blit(Personnage1, (350,350))
 
@@ -53,6 +53,11 @@ runninghaut = False
 
 #Boucle infinie
 
+runningdroit = False
+runningauche = False
+runningbas = False
+runninghaut = False
+
 while continuer:
 
     for event in pygame.event.get(): #On parcours la liste de tous les événements reçus
@@ -69,10 +74,6 @@ while continuer:
 
         # Ensemble des touches qui permettent de déplacer le personnage
 
-        runningdroit = False
-        runningauche = False
-        runningbas = False
-        runninghaut = False
 
         if event.type == KEYDOWN:
 
@@ -101,40 +102,36 @@ while continuer:
                 runninggauche = False
 
             while runninghaut == True:
-                    for i in range (1,300):
-                        position_perso1 = position_perso1.move(0,-1)
-                        fenetre.blit(Personnage1, position_perso1)
-                        pygame.time.delay(10)
-                        pygame.display.flip()
-                    if runninghaut == False:
-                        break
+                position_perso1 = position_perso1.move(0,-1)
+                fenetre.blit(Personnage1, position_perso1)
+                pygame.time.delay(10)
+                pygame.display.flip()
+                if runninghaut == False:
+                    break
 
             while runningbas == True:
-                    for i in range (1,300):
-                         position_perso1 = position_perso1.move(0,1)
-                         fenetre.blit(Personnage1, position_perso1)
-                         pygame.time.delay(10)
-                         pygame.display.flip()
-                    if runningbas == False:
-                        break
+                 position_perso1 = position_perso1.move(0,1)
+                 fenetre.blit(Personnage1, position_perso1)
+                 pygame.time.delay(10)
+                 pygame.display.flip()
+                 if runningbas == False:
+                    break
 
             while runninggauche == True:
-                    for i in range (1,300):
-                        position_perso1 = position_perso1.move(-1,0)
-                        fenetre.blit(Personnage1, position_perso1)
-                        pygame.time.delay(10)
-                        pygame.display.flip()
-                    if runninggauche == False:
-                        break
+                position_perso1 = position_perso1.move(-1,0)
+                fenetre.blit(Personnage1, position_perso1)
+                pygame.time.delay(10)
+                pygame.display.flip()
+                if runninggauche == False:
+                    break
 
             while runningdroit == True:
-                    for i in range (1,300):
-                        position_perso1 = position_perso1.move(1,0)
-                        fenetre.blit(Personnage1, position_perso1)
-                        pygame.time.delay(10)
-                        pygame.display.flip()
-                    if runningdroit == False:
-                        break
+                position_perso1 = position_perso1.move(1,0)
+                fenetre.blit(Personnage1, position_perso1)
+                pygame.time.delay(10)
+                pygame.display.flip()
+                if runningdroit == False:
+                    break
     # On re-colle la fenêtre
 
     fenetre.blit(couverture, (0,0))
