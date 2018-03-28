@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # Snake - v0.1
 # Ce script est un programme du jeu snake
 # License libre CC
@@ -34,98 +37,48 @@ position_perso1 = Personnage1.get_rect()
 #RafraÃ®chissement de l'Ã©cran
 pygame.display.flip()
 
-deplacement = USEREVENT+1
-pygame.time.set_timer(deplacement,150)
+#Variable qui continue la boucle
+continuer = True
+depUp = depDown = depRight = depLeft = False
+
+while(continuer):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+            continuer = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                depUp = True
+            if event.key == pygame.K_DOWN:
+                depDown = True
+            if event.key == pygame.K_RIGHT:
+                depRight = True
+            if event.key == pygame.K_LEFT:
+                depLeft = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP:
+                depUp = False
+            if event.key == pygame.K_DOWN:
+                depDown = False
+            if event.key == pygame.K_RIGHT:
+                depRight = False
+            if event.key == pygame.K_LEFT:
+                depLeft = False
+        if depUp:
+            print("up")
+        if depDown:
+            print("Down")
+        if depRight:
+            print("right")
+        if depLeft:
+            print("left")
 
 #Variable qui continue la boucle
 continuer = True
 
-runningdroit = False
-runningauche = False
-runningbas = False
-runninghaut = False
-
-#Boucle infinie
-
-while continuer:
-
-    for event in pygame.event.get(): #On parcours la liste de tous les Ã©vÃ©nements reÃ§us
-
-        if event.type == QUIT:
-               continuer = False
-
-        if event.type == KEYUP :
-
-            if event.key == K_ESCAPE:
-
-                continuer = False
-
-        # Ensemble des touches qui permettent de dÃ©placer le personnage
-
-        if event.type == KEYDOWN:
-
-            if event.key == K_UP:
-                runninghaut = True
-                runningbas = False
-                runningdroite = False
-                runninggauche = False
-                while runninghaut == True:
-                    for i in range (1,300):
-                        position_perso1 = position_perso1.move(0,-1)
-                        fenetre.blit(Personnage1, position_perso1)
-                        pygame.time.delay(10)
-                        pygame.display.flip()
-                    if runninghaut == False:
-                        break
-
-            elif event.key == K_DOWN:
-                runninghaut = False
-                runningbas = True
-                runningdroite = False
-                runninggauche = False
-                while runningbas == True:
-                    for i in range (1,300):
-                         position_perso1 = position_perso1.move(0,1)
-                         fenetre.blit(Personnage1, position_perso1)
-                         pygame.time.delay(10)
-                         pygame.display.flip()
-                    if runningbas == False:
-                        break
-
-            elif event.key == K_LEFT:
-                runninghaut = False
-                runningbas = False
-                runningdroite = False
-                runninggauche = True
-                while runninggauche == True:
-                    for i in range (1,300):
-                        position_perso1 = position_perso1.move(-1,0)
-                        fenetre.blit(Personnage1, position_perso1)
-                        pygame.time.delay(10)
-                        pygame.display.flip()
-                    if runninggauche == True:
-                        break
-
-            elif event.key == K_RIGHT:
-                runninghaut = False
-                runningbas = False
-                runningdroite = True
-                runninggauche = False
-                while runningdroit == True:
-                    for i in range (1,300):
-                        position_perso1 = position_perso1.move(1,0)
-                        fenetre.blit(Personnage1, position_perso1)
-                        pygame.time.delay(10)
-                        pygame.display.flip()
-                    if runningdroit == False:
-                        break
-
 # On re-colle la fenÃªtre
-
 fenetre.blit(couverture, (0,0))
 
 # On recolle le personnage Ã  sa nouvelle position
-
 fenetre.blit(Personnage1, position_perso1)
 
 pygame.display.flip()
