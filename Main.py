@@ -137,7 +137,7 @@ while continuer:
                         break
     # On re-colle la fenêtre
 
-    fenetre.blit(Couverture, (0,0))
+    fenetre.blit(couverture, (0,0))
 
     # On recolle le personnage à sa nouvelle position
 
