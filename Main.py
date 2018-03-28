@@ -21,17 +21,16 @@ fenetre = pygame.display.set_mode((700, 700))
 
 pygame.display.set_caption("Snake")
 
-#On charge un fond noir avec lequel on remplit la fenêtre
+#On charge un fond noir avec lequel on remplit la fenÃªtre
+couverture = pygame.Surface(fenetre.get_size())
+couverture = couverture.convert()
+couverture.fill((250, 250, 250))
+fenetre.blit(couverture, (0,0))
 
-Couverture = pygame.image.load("/Users/TLM/Documents/Projet ISN/fond_noir.jpg").convert()
-
-fenetre.blit(Couverture, (0,0))
-
-# On charge un personnage qu'on colle sur la fenêtre par dessus le fond noir
-
-Personnage1 = pygame.image.load("/Users/TLM/Documents/Projet ISN/Serpent2.png").convert_alpha()
-
-fenetre.blit(Personnage1, (250,250))
+# On charge un personnage qu'on colle sur la fenÃªtre par dessus le fond noir
+Personnage1 = pygame.image.load("/Users/colinlaganier/Desktop/head.png").convert_alpha()
+Personnage1 = pygame.transform.scale(Personnage1, (30,30))
+fenetre.blit(Personnage1, (350,350))
 
 # On récupère sa position pour s'en servir plus tard
 
