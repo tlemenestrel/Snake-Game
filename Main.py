@@ -21,13 +21,15 @@ fenetre = pygame.display.set_mode((700, 700))
 
 pygame.display.set_caption("Snake")
 
-#On charge un fond noir avec lequel on remplit la fenÃªtre
+#On charge un fond noir avec lequel on remplit la fenetre
+
 couverture = pygame.Surface(fenetre.get_size())
 couverture = couverture.convert()
 couverture.fill((250, 250, 250))
 fenetre.blit(couverture, (0,0))
 
-# On charge un personnage qu'on colle sur la fenÃªtre par dessus le fond noir
+# On charge un personnage qu'on colle sur la fenetre par dessus le fond noir
+
 Personnage1 = pygame.image.load("/Users/colinlaganier/Desktop/head.png").convert_alpha()
 Personnage1 = pygame.transform.scale(Personnage1, (30,30))
 fenetre.blit(Personnage1, (350,350))
