@@ -14,7 +14,7 @@ from random import randint
 #Initialisation de la bibliothèques Pygame
 pygame.init()
 
-#CrÃ©ation de la fenÃªtre
+#Création de la fenêtre
 fenetre = pygame.display.set_mode((700, 700))
 
 #On donne un nom à la fenêtre
@@ -63,14 +63,30 @@ while(continuer):
                 depRight = False
             if event.key == pygame.K_LEFT:
                 depLeft = False
-        if depUp:
-            print("up")
-        if depDown:
-            print("Down")
-        if depRight:
-            print("right")
-        if depLeft:
-            print("left")
+    if depUp:
+        position_perso1 = position_perso1.move(0,-1)
+        pygame.time.delay(10)
+        fenetre.blit(couverture, (0,0))
+        fenetre.blit(Personnage1, position_perso1)
+        pygame.display.flip()
+    if depDown:
+        position_perso1 = position_perso1.move(0,1)
+        pygame.time.delay(10)
+        fenetre.blit(couverture, (0,0))
+        fenetre.blit(Personnage1, position_perso1)
+        pygame.display.flip()
+    if depRight:
+        position_perso1 = position_perso1.move(1,0)
+        pygame.time.delay(10)
+        fenetre.blit(couverture, (0,0))
+        fenetre.blit(Personnage1, position_perso1)
+        pygame.display.flip()
+    if depLeft:
+        position_perso1 = position_perso1.move(-1,0)
+        pygame.time.delay(10)
+        fenetre.blit(couverture, (0,0))
+        fenetre.blit(Personnage1, position_perso1)
+        pygame.display.flip()
 
 #Variable qui continue la boucle
 continuer = True
