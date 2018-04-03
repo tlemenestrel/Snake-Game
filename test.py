@@ -14,7 +14,7 @@ from random import randint
 #Initialisation de la bibliothèques Pygame
 pygame.init()
 
-#Création de la fenêtre
+#Création de la fenÃªtre
 fenetre = pygame.display.set_mode((700, 700))
 
 #On donne un nom à la fenêtre
@@ -27,12 +27,28 @@ couverture.fill((250, 250, 250))
 fenetre.blit(couverture, (0,0))
 
 # On charge un personnage qu'on colle sur la fenêtre par dessus le fond noir
-Personnage1 = pygame.image.load("F:\ISN\head.png").convert_alpha()
-Personnage1 = pygame.transform.scale(Personnage1, (30,30))
+Personnage1 = pygame.image.load("/Users/colinlaganier/Desktop/head.png").convert_alpha()
+Personnage1 = pygame.transform.scale(Personnage1, (35,35))
 fenetre.blit(Personnage1, (0,0))
+
+corps1 = pygame.image.load("/Users/colinlaganier/Desktop/corps.png").convert_alpha()
+corps1 = pygame.transform.scale(corps1, (25,25))
+fenetre.blit(corps1, (5,35))
+corps2 = pygame.image.load("/Users/colinlaganier/Desktop/corps.png").convert_alpha()
+corps2 = pygame.transform.scale(corps2, (25,25))
+fenetre.blit(corps2, (5,60))
+Personnage4 = pygame.image.load("/Users/colinlaganier/Desktop/corps.png").convert_alpha()
+Personnage4 = pygame.transform.scale(Personnage4, (25,25))
+fenetre.blit(Personnage4, (5,85))
+fruit = pygame.image.load("/Users/colinlaganier/Desktop/fruit.png").convert_alpha()
+fruit = pygame.transform.scale(fruit, (25,25))
+fenetre.blit(fruit, (255,0))
 
 # On récupère sa position
 position_perso1 = Personnage1.get_rect()
+position_corps1 = corps1.get_rect()
+position_corps2 = corps2.get_rect()
+position_fruit = fruit.get_rect()
 
 #Rafraichissement de l'écran
 pygame.display.flip()
@@ -47,46 +63,61 @@ while(continuer):
             continuer = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
+                depDown = depRight = depLeft = False
                 depUp = True
             if event.key == pygame.K_DOWN:
-                depDown = True
+            	depRight = depLeft = depUp = False
+            	depDown = True
             if event.key == pygame.K_RIGHT:
-                depRight = True
+            	depLeft = depUp = depDown = False
+            	depRight = True
             if event.key == pygame.K_LEFT:
-                depLeft = True
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_UP:
-                depUp = False
-            if event.key == pygame.K_DOWN:
-                depDown = False
-            if event.key == pygame.K_RIGHT:
-                depRight = False
-            if event.key == pygame.K_LEFT:
-                depLeft = False
+            	depRight = depDown = depUp = False
+            	depLeft = True
+       
     if depUp:
         position_perso1 = position_perso1.move(0,-1)
+        position_corps1 = position_corps1.move(0,-1)
+        position_corps2 = position_corps2.move(0,-1)
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(Personnage1, position_perso1)
+        fenetre.blit(corps1, position_corps1)
+        fenetre.blit(corps2, position_corps2)
         pygame.display.flip()
     if depDown:
         position_perso1 = position_perso1.move(0,1)
+        position_corps1 = position_corps1.move(0,1)
+        position_corps2 = position_corps2.move(0,1)
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(Personnage1, position_perso1)
+        fenetre.blit(corps1, position_corps1)
+        fenetre.blit(corps2, position_corps2)
         pygame.display.flip()
     if depRight:
         position_perso1 = position_perso1.move(1,0)
+        position_corps1 = position_corps1.move(1,0)
+        position_corps2 = position_corps2.move(1,0)
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(Personnage1, position_perso1)
+        fenetre.blit(corps1, position_corps1)
+        fenetre.blit(corps2, position_corps2)
         pygame.display.flip()
     if depLeft:
         position_perso1 = position_perso1.move(-1,0)
+        position_corps1 = position_corps1.move(-1,0)
+        position_corps2 = position_corps2.move(-1,0)
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(Personnage1, position_perso1)
+        fenetre.blit(corps1, position_corps1)
+        fenetre.blit(corps2, position_corps2)
         pygame.display.flip()
+
+    if position_perso1.colliderect(position_fruit):
+    	print("collision")
 
 #Variable qui continue la boucle
 continuer = True
