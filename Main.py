@@ -16,6 +16,7 @@ pygame.init()
 
 #Création de la fenÃªtre
 fenetre = pygame.display.set_mode((700, 700))
+fenetre_rect = fenetre.get_rect()
 
 #On donne un nom à la fenêtre
 pygame.display.set_caption("Snake")
@@ -27,20 +28,20 @@ couverture.fill((250, 250, 250))
 fenetre.blit(couverture, (0,0))
 
 # On charge un personnage qu'on colle sur la fenêtre par dessus le fond noir
-Personnage1 = pygame.image.load("/Users/colinlaganier/Desktop/head.png").convert_alpha()
+Personnage1 = pygame.image.load("head.png").convert_alpha()
 Personnage1 = pygame.transform.scale(Personnage1, (35,35))
 fenetre.blit(Personnage1, (0,0))
 
-corps1 = pygame.image.load("/Users/colinlaganier/Desktop/corps.png").convert_alpha()
+corps1 = pygame.image.load("corps.png").convert_alpha()
 corps1 = pygame.transform.scale(corps1, (25,25))
 fenetre.blit(corps1, (5,35))
-corps2 = pygame.image.load("/Users/colinlaganier/Desktop/corps.png").convert_alpha()
+corps2 = pygame.image.load("corps.png").convert_alpha()
 corps2 = pygame.transform.scale(corps2, (25,25))
 fenetre.blit(corps2, (5,60))
-Personnage4 = pygame.image.load("/Users/colinlaganier/Desktop/corps.png").convert_alpha()
+Personnage4 = pygame.image.load("corps.png").convert_alpha()
 Personnage4 = pygame.transform.scale(Personnage4, (25,25))
 fenetre.blit(Personnage4, (5,85))
-fruit = pygame.image.load("/Users/colinlaganier/Desktop/fruit.png").convert_alpha()
+fruit = pygame.image.load("fruit.png").convert_alpha()
 fruit = pygame.transform.scale(fruit, (25,25))
 fenetre.blit(fruit, (255,0))
 
@@ -74,7 +75,7 @@ while(continuer):
             if event.key == pygame.K_LEFT:
             	depRight = depDown = depUp = False
             	depLeft = True
-       
+
     if depUp:
         position_perso1 = position_perso1.move(0,-1)
         position_corps1 = position_corps1.move(0,-1)
@@ -118,6 +119,15 @@ while(continuer):
 
     if position_perso1.colliderect(position_fruit):
     	print("collision")
+
+    if position_perso1.left < fenetre_rect.left:
+        continuer = False
+    if position_perso1.right > fenetre_rect.bottom:
+        continuer = False
+    if position_perso1.top < fenetre_rect.top:
+        continuer = False
+    if position_perso1.bottom > fenetre_rect.bottom:
+        continuer = False
 
 #Variable qui continue la boucle
 continuer = True
