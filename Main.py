@@ -14,6 +14,10 @@ from random import randint
 #Initialisation de la bibliothèques Pygame
 pygame.init()
 
+#On démarre la musique
+musique= pygame.mixer.music.load("musique.mp3")
+pygame.mixer.music.play()
+
 #Création de la fenÃªtre
 fenetre = pygame.display.set_mode((700, 700))
 fenetre_rect = fenetre.get_rect()
