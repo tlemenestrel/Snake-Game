@@ -21,7 +21,7 @@ fenetre_rect = fenetre.get_rect()
 #On donne un nom à la fenêtre
 pygame.display.set_caption("Snake")
 
-#On charge un fond noir avec lequel on remplit la fenêtre
+#On charge un fond blanc avec lequel on remplit la fenêtre
 couverture = pygame.Surface(fenetre.get_size())
 couverture = couverture.convert()
 couverture.fill((250, 250, 250))
@@ -55,11 +55,11 @@ continuer = True
 depUp = depDown = depRight = depLeft = False
 
 while(continuer):
-    for event in pygame.event.get(): #On vérifie si le joueur appuye sur une des flèches
+    for event in pygame.event.get(): 
         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
             continuer = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP: #On vérifie si le joueur appuye sur une des flèches
                 depDown = depRight = depLeft = False
                 depUp = True
             if event.key == pygame.K_DOWN:
@@ -71,8 +71,9 @@ while(continuer):
             if event.key == pygame.K_LEFT:
             	depRight = depDown = depUp = False
             	depLeft = True
-
+    #Ici, on effectue le déplacement du serpent 
     if depUp:
+        
         position_1 = position_1.move(0,-1)
         position_2 = position_2.move(0,-1)
         pygame.time.delay(10)
@@ -80,15 +81,17 @@ while(continuer):
         fenetre.blit(tete, position_1)
         fenetre.blit(corps1, position_2)
         pygame.display.flip()
+        
     if depDown:
+        
         position_1 = position_1.move(0,1)
         position_2 = position_2.move(0,1)
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(tete, position_1)
         fenetre.blit(corps1, position_2)
-
         pygame.display.flip()
+        
     if depRight:
         position_1 = position_1.move(1,0)
         position_2 = position_2.move(1,0)
@@ -96,8 +99,8 @@ while(continuer):
         fenetre.blit(couverture, (0,0))
         fenetre.blit(tete, position_1)
         fenetre.blit(corps1, position_2)
-
         pygame.display.flip()
+        
     if depLeft:
         position_1 = position_1.move(-1,0)
         position_2 = position_2.move(-1,0)
@@ -110,7 +113,7 @@ while(continuer):
     if position_1.colliderect(position_fruit):
     	print("collision")
 
-    if position_1.left < fenetre_rect.left:
+    if position_1.left < fenetre_rect.left: #Ici, on vérifie si le serpent ne touche pas les bords
         continuer = False
     if position_1.right > fenetre_rect.bottom:
         continuer = False
