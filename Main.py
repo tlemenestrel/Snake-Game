@@ -114,8 +114,8 @@ while(continuer):
         fenetre.blit(corps1, position_2)
         pygame.display.flip()
 
-    if position_1.colliderect(position_fruit):
-    	print("collision")
+    #if position_1.colliderect(position_fruit):
+    	#print("collision")
 
     if position_1.left < fenetre_rect.left: #Ici, on vérifie si le serpent ne touche pas les bords
         continuer = False
