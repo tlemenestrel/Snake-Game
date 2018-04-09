@@ -11,6 +11,10 @@ import pygame
 from pygame.locals import *
 from random import randint
 
+#On définit le serpent par une liste et on compte le nombre de parties qu'il possède
+liste_serpent = [1,0]
+snake_parts = liste_serpent.count("0")
+
 #Initialisation de la bibliothèques Pygame
 pygame.init()
 
@@ -39,7 +43,6 @@ fenetre.blit(tete, (0,0))
 #On charge le corps du serpent
 corps1 = pygame.image.load("corps.png").convert_alpha()
 corps1 = pygame.transform.scale(corps1, (25,25))
-fenetre.blit(corps1, (5,35))
 
 #On charge un fruit
 fruit = pygame.image.load("fruit.png").convert_alpha()
@@ -77,23 +80,25 @@ while(continuer):
             	depLeft = True
     #Ici, on effectue le déplacement du serpent 
     if depUp:
-        
         position_1 = position_1.move(0,-1)
         position_2 = position_2.move(0,-1)
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(tete, position_1)
-        fenetre.blit(corps1, position_2)
+        for i in range (snake_parts):
+            fenetre.blit(corps1, position_2)
+            position_2 = position_2.move(0,-1)
         pygame.display.flip()
         
     if depDown:
-        
         position_1 = position_1.move(0,1)
         position_2 = position_2.move(0,1)
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(tete, position_1)
-        fenetre.blit(corps1, position_2)
+        for i in range (snake_parts):
+            fenetre.blit(corps1, position_2)
+            position_2 = position_2.move(0,1)
         pygame.display.flip()
         
     if depRight:
@@ -102,7 +107,9 @@ while(continuer):
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(tete, position_1)
-        fenetre.blit(corps1, position_2)
+        for i in range (snake_parts):
+            fenetre.blit(corps1, position_2)
+            position_2 = position_2.move(1,0)
         pygame.display.flip()
         
     if depLeft:
@@ -111,11 +118,13 @@ while(continuer):
         pygame.time.delay(10)
         fenetre.blit(couverture, (0,0))
         fenetre.blit(tete, position_1)
-        fenetre.blit(corps1, position_2)
+        for i in range (snake_parts):
+            fenetre.blit(corps1, position_2)
+            position_2 = position_2.move(-1,0)
         pygame.display.flip()
 
-    #if position_1.colliderect(position_fruit):
-    	#print("collision")
+    if position_1.colliderect(position_fruit):
+        liste_serpent.append(0)
 
     if position_1.left < fenetre_rect.left: #Ici, on vérifie si le serpent ne touche pas les bords
         continuer = False
