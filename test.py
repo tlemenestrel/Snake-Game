@@ -21,9 +21,9 @@ for i in range(0,1000):
 	y.append(-100)
 
 #fonction définissant si il y a une collision entre les coordonnées du serpent et d'autres coordonnées
-def collision(x1,y1,x2,y2,size_fruit):
-	if x1 >= x2 and x1 <= x2 + size_fruit:
-		if y1 >= y2 and y1 <= y2 + size_fruit:
+def collision(x1,y1,x2,y2, size_snake, size_fruit):
+	if ((x1 + size_snake >= x2) or (x1 >= x2)) and x1 <= x2 + size_fruit:
+		if ((y1 >= y2) or (y1 + size_snake >=y2)) and y1 <= y2 + size_fruit:
 			return True
 		return False
 
@@ -142,7 +142,7 @@ while(continuer):
     pygame.display.flip()
 
     for i in range(0,length):
-        if collision(position_fruit.x, position_fruit.y, x[i], y[i],25):
+        if collision(position_fruit.x, position_fruit.y, x[i], y[i],35,25):
         	position_fruit.x = randint(1,670)
         	position_fruit.y = randint(1,670)
         	length = length + 1
