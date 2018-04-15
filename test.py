@@ -86,7 +86,7 @@ pygame.display.flip()
 
 #Variable qui continue la boucle
 continuer = True
-depUp = depDown = depRight = depLeft = False
+depUp = depDown = depRight = depLeft = move_init = False
 
 while(continuer):
     for event in pygame.event.get():
@@ -95,16 +95,16 @@ while(continuer):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 depDown = depRight = depLeft = False
-                depUp = True
+                depUp = move_init = True
             if event.key == pygame.K_DOWN:
             	depRight = depLeft = depUp = False
-            	depDown = True
+            	depDown = move_init = True
             if event.key == pygame.K_RIGHT:
             	depLeft = depUp = depDown = False
-            	depRight = True
+            	depRight = move_init = True
             if event.key == pygame.K_LEFT:
             	depRight = depDown = depUp = False
-            	depLeft = True
+            	depLeft = move_init = True
 
     for i in range(length-1,0,-1):
         x[i] = x[i-1]
