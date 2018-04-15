@@ -27,6 +27,11 @@ def collision(x1,y1,x2,y2, size_snake, size_fruit):
 			return True
 		return False
 	
+def collision(x1,y1,x2,y2, size_snake, size_fruit):
+	if ((x1 + size_snake >= x2) or (x1 >= x2)) and x1 <= x2 + size_fruit:
+		if ((y1 >= y2) or (y1 + size_snake >=y2)) and y1 <= y2 + size_fruit:
+			return True
+		return False
 #Fonction qui affiche le score du joueur sur la page de jeu	
 def disp_score(score):
     font = pygame.font.SysFont(None, 25)
@@ -106,8 +111,10 @@ while(continuer):
         x[i] = x[i-1]
         y[i] = y[i-1]
 
+    couverture.fill((250, 250, 250))
     for i in range(0,length):
         couverture.blit(corps1, (x[i], y[i]))
+    
 
 	# Modification de la position de la tête du serpent       
     if depUp:
@@ -135,13 +142,13 @@ while(continuer):
         fenetre.blit(head, (x[0], y[0]))
         pygame.display.flip()
 
-    if position_1.left < fenetre_rect.left: #Ici, on vérifie si le serpent ne touche pas les bords
+    if x[0] < fenetre_rect.left: #Ici, on vérifie si le serpent ne touche pas les bords
         continuer = False
-    if position_1.right > fenetre_rect.bottom:
+    if x[0] > fenetre_rect.bottom:
         continuer = False
-    if position_1.top < fenetre_rect.top:
+    if y[0] < fenetre_rect.top:
         continuer = False
-    if position_1.bottom > fenetre_rect.bottom:
+    if y[0] > fenetre_rect.bottom:
         continuer = False
 
     fenetre.blit(fruit, position_fruit)
@@ -159,7 +166,6 @@ while(continuer):
 
 # On re-colle la fenêtre
 fenetre.blit(couverture, (0,0))
-
 
 pygame.display.flip()
 pygame.quit()
