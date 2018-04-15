@@ -26,6 +26,11 @@ def collision(x1,y1,x2,y2, size_snake, size_fruit):
 		if ((y1 >= y2) or (y1 + size_snake >=y2)) and y1 <= y2 + size_fruit:
 			return True
 		return False
+def collision_snake(x3,y3,x4,y4):
+	if x3 == x4:
+                if y3 == y4:
+                        return True
+                return False
 	
 #Fonction qui affiche le score du joueur sur la page de jeu	
 def disp_score(score):
@@ -159,6 +164,10 @@ while(continuer):
         	position_fruit.y = randint(1,670)
         	length = length + 1
         	score = score + 1
+		
+    for i in range(0,length):
+        if collision_snake(x[0],y[0],x[i],y[i]):
+                continuer = False
 		
     disp_score(score)
     pygame.display.flip()
