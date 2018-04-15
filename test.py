@@ -26,6 +26,12 @@ def collision(x1,y1,x2,y2, size_snake, size_fruit):
 		if ((y1 >= y2) or (y1 + size_snake >=y2)) and y1 <= y2 + size_fruit:
 			return True
 		return False
+	
+#Fonction qui affiche le score du joueur sur la page de jeu	
+def disp_score(score):
+    font = pygame.font.SysFont(None, 25)
+    text = font.render("Score: "+str(score), True, (0, 0, 0))
+    fenetre.blit(text,(600,0)) 
 
 #Initialisation de la bibliothèques Pygame
 pygame.init()
@@ -147,6 +153,9 @@ while(continuer):
         	position_fruit.y = randint(1,670)
         	length = length + 1
         	score = score + 1
+		
+    disp_score(score)
+    pygame.display.flip()
 
 # On re-colle la fenêtre
 fenetre.blit(couverture, (0,0))
