@@ -27,11 +27,6 @@ def collision(x1,y1,x2,y2, size_snake, size_fruit):
 			return True
 		return False
 	
-def collision(x1,y1,x2,y2, size_snake, size_fruit):
-	if ((x1 + size_snake >= x2) or (x1 >= x2)) and x1 <= x2 + size_fruit:
-		if ((y1 >= y2) or (y1 + size_snake >=y2)) and y1 <= y2 + size_fruit:
-			return True
-		return False
 #Fonction qui affiche le score du joueur sur la page de jeu	
 def disp_score(score):
     font = pygame.font.SysFont(None, 25)
