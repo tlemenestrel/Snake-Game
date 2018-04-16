@@ -49,18 +49,18 @@ pygame.display.set_caption("Snake")
 musique= pygame.mixer.music.load("musique.mp3")
 pygame.mixer.music.play()
 
-#On charge un fond noir avec lequel on remplit la fenêtre
+#On charge un fond blanc avec lequel on remplit la fenêtre
 couverture = pygame.Surface(fenetre.get_size())
 couverture = couverture.convert()
 couverture.fill((250, 250, 250))
 fenetre.blit(couverture, (0,0))
 
 #On charge les images des différents objets du jeu
-head = pygame.image.load("head.png").convert_alpha()
+head = pygame.image.load("head.png").convert_alpha() # La tête
 head = pygame.transform.scale(head, (35,35))
-corps1 = pygame.image.load("corps.png").convert_alpha()
+corps1 = pygame.image.load("corps.png").convert_alpha() #Le corps
 corps1 = pygame.transform.scale(corps1, (25,25))
-fruit = pygame.image.load("fruit.png").convert_alpha()
+fruit = pygame.image.load("fruit.png").convert_alpha() #Le fruit
 fruit = pygame.transform.scale(fruit, (35,35))
 
 #On charge les objets dans le jeu
@@ -73,21 +73,21 @@ position_fruit = fruit.get_rect()
 
 x[0] = position_1.x
 y[0] = position_1.y
-position_fruit.x = randint(1,300)
+position_fruit.x = randint(1,300) #On donne une position aléatoire au fruit
 position_fruit.y = randint(1,300)
 
 #Rafraichissement de l'écran
 pygame.display.flip()
 
-#Variable qui continue la boucle
+#Variable qui continue la boucle principale du jeu
 continuer = True
 depUp = depDown = depRight = depLeft = move_init = False
 
 while(continuer):
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+    for event in pygame.event.get(): #On récupère les différents évènements du joueur
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):#Ici, on vérifie si le joueur ne quitte pas le jeu
             continuer = False
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:#Ici, on vérifie si le joueur appuye sur une des flèches du clavier
             if event.key == pygame.K_UP:
                 depDown = depRight = depLeft = False
                 depUp = move_init = True
@@ -105,38 +105,45 @@ while(continuer):
         x[i] = x[i-1]
         y[i] = y[i-1]
 
-    couverture.fill((250, 250, 250))
-    for i in range(0,length):
+    couverture.fill((250, 250, 250)) #On remplit à nouveau l'écran de blanc pour effacer les parties du corps précédentes
+    for i in range(0,length): #On colle le corps du serpent
         couverture.blit(corps1, (x[i], y[i]))
     
-
-	# Modification de la position de la tête du serpent       
+    # Modification de la position de la tête du serpent       
     if depUp:
-        y[0] = y[0] - step
-        pygame.time.delay(10)
-        fenetre.blit(couverture, (0,0))
+	
+        y[0] = y[0] - step #On déplace sa position
+        pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
+        fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
         fenetre.blit(head, (x[0], y[0]))
         pygame.display.flip()
+	
     if depDown:
-        y[0] = y[0] + step
-        pygame.time.delay(10)
-        fenetre.blit(couverture, (0,0))
+	
+        y[0] = y[0] + step #On déplace sa position
+        pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
+        fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
         fenetre.blit(head, (x[0], y[0]))
         pygame.display.flip()
+	
     if depRight:
-        x[0] = x[0] + step
-        pygame.time.delay(10)
-        fenetre.blit(couverture, (0,0))
+	
+        x[0] = x[0] + step #On déplace sa position
+        pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
+        fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
         fenetre.blit(head, (x[0], y[0]))
         pygame.display.flip()
+	
     if depLeft:
-        x[0] = x[0] - step
-        pygame.time.delay(10)
-        fenetre.blit(couverture, (0,0))
+	
+        x[0] = x[0] - step #On déplace sa position
+        pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
+        fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
         fenetre.blit(head, (x[0], y[0]))
         pygame.display.flip()
 
-    if x[0] < fenetre_rect.left: #Ici, on vérifie si le serpent ne touche pas les bords
+    #Ici, on vérifie si le serpent ne touche pas les bords
+    if x[0] < fenetre_rect.left: 
         continuer = False
     if x[0] > fenetre_rect.bottom:
         continuer = False
@@ -144,10 +151,12 @@ while(continuer):
         continuer = False
     if y[0] > fenetre_rect.bottom:
         continuer = False
-
-    fenetre.blit(fruit, position_fruit)
+	
+    #On colle le fruit
+    fenetre.blit(fruit, position_fruit)  
     pygame.display.flip()
-
+	
+    #On vérifie si le serpent touche un fruit
     for i in range(0,length):
         if collision(position_fruit.x, position_fruit.y, x[i], y[i],35,25):
         	position_fruit.x = randint(1,670)
@@ -156,12 +165,14 @@ while(continuer):
         	step = step + 0.5
         	score = score + 1
 
-    # Vérifie si la tête du serpent ne touche pas le corps
+    #On vérifie si la tête du serpent ne touche pas le corps
     for i in range(2,length):
             if collision(x[0], y[0], x[i], y[i],0,0) and move_init:
                 continuer = False
 		
+    #On ajoute le score à l'écran
     disp_score(score)
     pygame.display.flip()
 
+#On quitte le jeu
 pygame.quit()
