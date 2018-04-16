@@ -45,6 +45,10 @@ fenetre_rect = fenetre.get_rect()
 #On donne un nom à la fenêtre
 pygame.display.set_caption("Snake")
 
+#On démarre la musique
+musique= pygame.mixer.music.load("musique.mp3")
+pygame.mixer.music.play()
+
 #On charge un fond noir avec lequel on remplit la fenêtre
 couverture = pygame.Surface(fenetre.get_size())
 couverture = couverture.convert()
