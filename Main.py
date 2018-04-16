@@ -100,7 +100,8 @@ while(continuer):
             if event.key == pygame.K_LEFT:
             	depRight = depDown = depUp = False
             	depLeft = move_init = True
-
+		
+    #On fait remonter chaque partie du corps du serpent lorsqu'il avance
     for i in range(length-1,0,-1):
         x[i] = x[i-1]
         y[i] = y[i-1]
