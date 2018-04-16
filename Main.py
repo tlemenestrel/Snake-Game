@@ -46,8 +46,9 @@ fenetre_rect = fenetre.get_rect()
 pygame.display.set_caption("Snake")
 
 #On démarre la musique
-musique= pygame.mixer.music.load("musique.mp3")
+musique= pygame.mixer.music.load("musique.mp3") 
 pygame.mixer.music.play()
+bruitage = pygame.mixer.music.load("bruitage.waw")
 
 #On charge un fond blanc avec lequel on remplit la fenêtre
 couverture = pygame.Surface(fenetre.get_size())
@@ -165,6 +166,8 @@ while(continuer):
         	length = length + 2
         	step = step + 0.5
         	score = score + 1
+        	bruitage.play()
+                
 
     #On vérifie si la tête du serpent ne touche pas le corps
     for i in range(2,length):
@@ -177,3 +180,4 @@ while(continuer):
 
 #On quitte le jeu
 pygame.quit()
+
