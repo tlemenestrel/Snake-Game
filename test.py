@@ -22,7 +22,7 @@ for i in range(0,1000):
 	x.append(-100)
 	y.append(-100)
 
-#fonction définissant si il y a une collision entre les coordonnées du serpent et d'autres coordonnées
+#fonction définissant si il y a une collision entre les coordonnées du serpent et d'autres coordonnées, comme celles des fruits ou des différentes parties du serpent
 def collision(x1,y1,x2,y2, size_snake, size_fruit):
 	if ((x1 + size_snake >= x2) or (x1 >= x2)) and x1 <= x2 + size_fruit:
 		if ((y1 >= y2) or (y1 + size_snake >=y2)) and y1 <= y2 + size_fruit:
