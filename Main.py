@@ -72,9 +72,10 @@ fenetre.blit(corps1, (-5,5))
 position_1 = head.get_rect()
 position_fruit = fruit.get_rect()
 
+#On entre les coordonnées dede la tête dans leur liste respective 
 x[0] = position_1.x
 y[0] = position_1.y
-position_fruit.x = randint(1,300) #On donne une position aléatoire au fruit
+position_fruit.x = randint(1,300) #On donne une position aléatoire au premier frui
 position_fruit.y = randint(1,300)
 
 #Rafraichissement de l'écran
@@ -102,7 +103,7 @@ while(continuer):
             	depRight = depDown = depUp = False
             	depLeft = move_init = True
 		
-    #On fait remonter chaque partie du corps du serpent lorsqu'il avance
+    #On donne les coordonnées du morceau précédent a chaque morecau 
     for i in range(length-1,0,-1):
         x[i] = x[i-1]
         y[i] = y[i-1]
