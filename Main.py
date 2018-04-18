@@ -13,7 +13,7 @@ from random import randint
 
 x = [0]
 y = [0]
-step = 8
+step = 23
 score = 0
 length = 3
 
@@ -165,7 +165,6 @@ while(continuer):
         	position_fruit.x = randint(1,670)
         	position_fruit.y = randint(1,670)
         	length = length + 2
-        	step = step + 0.5
         	score = score + 1
         	bruitage.play()
                 
@@ -178,6 +177,7 @@ while(continuer):
     #On ajoute le score à l'écran
     disp_score(score)
     pygame.display.flip()
+    time.sleep (50.0 / 1000.0);
 
 #On quitte le jeu
 pygame.quit()
