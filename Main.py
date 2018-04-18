@@ -7,9 +7,10 @@
 # Colin Laganier - Thomas Le Menestrel - 2018.03.27
 
 #Importation des bibliothèques nécessaires
-import pygame
 from pygame.locals import *
 from random import randint
+import pygame
+import time
 
 x = [0]
 y = [0]
