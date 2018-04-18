@@ -66,8 +66,8 @@ fruit = pygame.image.load("fruit.png").convert_alpha() #Le fruit
 fruit = pygame.transform.scale(fruit, (35,35))
 
 #On charge les objets dans le jeu
-fenetre.blit(head, (0,0))
 fenetre.blit(corps1, (-5,5))
+fenetre.blit(head, (0,0))
 
 #On récupère leur position
 position_1 = head.get_rect()
