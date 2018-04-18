@@ -39,6 +39,9 @@ def disp_score(score):
 #Initialisation de la bibliothèques Pygame
 pygame.init()
 
+#On charge les bruitages du jeu
+bruit_mouvement = pygame.mixer.Sound("jump.wav")
+
 #Création de la fenêtre
 fenetre = pygame.display.set_mode((700, 700))
 fenetre_rect = fenetre.get_rect()
@@ -96,15 +99,19 @@ while(continuer):
             if event.key == pygame.K_UP:
                 depDown = depRight = depLeft = False
                 depUp = move_init = True
+		pygame.mixer.Sound.play(bruit_mouvement)
             if event.key == pygame.K_DOWN:
             	depRight = depLeft = depUp = False
             	depDown = move_init = True
+		pygame.mixer.Sound.play(bruit_mouvement)
             if event.key == pygame.K_RIGHT:
             	depLeft = depUp = depDown = False
             	depRight = move_init = True
+		pygame.mixer.Sound.play(bruit_mouvement)
             if event.key == pygame.K_LEFT:
             	depRight = depDown = depUp = False
             	depLeft = move_init = True
+		pygame.mixer.Sound.play(bruit_mouvement)
 		
     #On donne les coordonnées du morceau précédent a chaque morecau 
     for i in range(length-1,0,-1):
