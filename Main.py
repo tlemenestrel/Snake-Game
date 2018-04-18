@@ -76,8 +76,10 @@ position_fruit = fruit.get_rect()
 #On entre les coordonnées dede la tête dans leur liste respective 
 x[0] = position_1.x
 y[0] = position_1.y
-position_fruit.x = randint(1,300) #On donne une position aléatoire au premier frui
-position_fruit.y = randint(1,300)
+
+#On donne une position aléatoire au premier fruit, proche du joueur
+position_fruit.x = randint(2,10)*step
+position_fruit.y = randint(2,10)*step
 
 #Rafraichissement de l'écran
 pygame.display.flip()
@@ -163,8 +165,8 @@ while(continuer):
     #On vérifie si le serpent touche un fruit
     for i in range(0,length):
         if collision(position_fruit.x, position_fruit.y, x[i], y[i],35,25):
-        	position_fruit.x = randint(1,670)
-        	position_fruit.y = randint(1,670)
+        	position_fruit.x = randint(1,20)*step
+        	position_fruit.y = randint(1,20)*step
         	length = length + 2
         	score = score + 1
         	bruitage.play()
