@@ -178,7 +178,9 @@ while(continuer):
     #On ajoute le score à l'écran
     disp_score(score)
     pygame.display.flip()
-    time.sleep (50.0 / 1000.0);
+
+    #On ajoute un retard au jeu
+    time.sleep (50.0 / 1000.0)
 
 #On quitte le jeu
 pygame.quit()
