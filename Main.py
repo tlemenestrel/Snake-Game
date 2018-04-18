@@ -146,7 +146,7 @@ while(continuer):
         fenetre.blit(head, (x[0], y[0]))
         pygame.display.flip()
 
-    #Ici, on vérifie si le serpent ne touche pas les bords
+    #On vérifie si le serpent ne touche pas les bords
     if x[0] < fenetre_rect.left: 
         continuer = False
     if x[0] > fenetre_rect.bottom:
@@ -179,7 +179,7 @@ while(continuer):
     disp_score(score)
     pygame.display.flip()
 
-    #On ajoute un retard au jeu
+    #On ajoute un retard à la boucle
     time.sleep (50.0 / 1000.0)
 
 #On quitte le jeu
