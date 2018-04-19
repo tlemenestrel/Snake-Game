@@ -88,9 +88,9 @@ depUp = depDown = depRight = depLeft = move_init = False
 
 while(continuer):
     for event in pygame.event.get(): #On récupère les différents évènements du joueur
-        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):#Ici, on vérifie si le joueur ne quitte pas le jeu
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):#On vérifie si le joueur ne quitte pas le jeu
             continuer = False
-        if event.type == pygame.KEYDOWN:#Ici, on vérifie si le joueur appuye sur une des flèches du clavier
+        if event.type == pygame.KEYDOWN:#On vérifie si le joueur appuye sur une des flèches du clavier
 		
             if event.key == pygame.K_UP:
                 depDown = depRight = depLeft = False
