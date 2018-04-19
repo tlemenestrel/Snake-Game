@@ -96,18 +96,22 @@ while(continuer):
         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):#Ici, on vérifie si le joueur ne quitte pas le jeu
             continuer = False
         if event.type == pygame.KEYDOWN:#Ici, on vérifie si le joueur appuye sur une des flèches du clavier
+		
             if event.key == pygame.K_UP:
                 depDown = depRight = depLeft = False
                 depUp = move_init = True
 		pygame.mixer.Sound.play(bruit_mouvement)
+		
             if event.key == pygame.K_DOWN:
             	depRight = depLeft = depUp = False
             	depDown = move_init = True
 		pygame.mixer.Sound.play(bruit_mouvement)
+		
             if event.key == pygame.K_RIGHT:
             	depLeft = depUp = depDown = False
             	depRight = move_init = True
 		pygame.mixer.Sound.play(bruit_mouvement)
+		
             if event.key == pygame.K_LEFT:
             	depRight = depDown = depUp = False
             	depLeft = move_init = True
@@ -178,7 +182,6 @@ while(continuer):
         	score = score + 1
         	bruitage.play()
                 
-
     #On vérifie si la tête du serpent ne touche pas le corps
     for i in range(2,length):
             if collision(x[0], y[0], x[i], y[i],0,0) and move_init:
@@ -193,4 +196,3 @@ while(continuer):
 
 #On quitte le jeu
 pygame.quit()
-
