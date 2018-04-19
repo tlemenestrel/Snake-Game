@@ -149,21 +149,23 @@ while(continuer):
         fenetre.blit(couverture_menu, (0,0))
 
         #On dessine un carré pour donner les informations au joueur
-        pygame.draw.rect(fenetre,(0,255,0),(300,250,200,200))
-        pygame.draw.rect(fenetre,(0,200,0),(300,250,200,200),5)
+        pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
+        pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
 
         #On explique au joueur comment entre dans le jeu 
         font18 = pygame.font.SysFont(None, 18)
         text = font18.render("Appuyez sur entrer pour jouer",True,(0,0,0))
         textX = text.get_rect().width
         textY = text.get_rect().height
-        fenetre.blit(text,((400 - (textX / 2)),(350 - (textY / 2))))
+        fenetre.blit(text,((390 - (textX / 2)),(320 - (textY / 2))))
 
         #On explique au jouer quels touches utiliser pour jouer
+        text = font18.render("Commandes de jeu :",True,(0,0,0))
+        fenetre. blit(text, (300,360))
         controls = pygame.image.load("keypad.png").convert_alpha()
         controls = pygame.transform.scale(controls, (100,100))
-        fenetre.blit(controls, (350,350))
-        pygame.display.flip()                                 
+        fenetre.blit(controls, (340,380))
+        pygame.display.flip()                                        
 
     if etat == 2:
 
