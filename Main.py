@@ -93,27 +93,32 @@ while(continuer):
         
             if event.key == pygame.K_UP:
                 if etat == 2:
-                    depDown = depRight = depLeft = False
-                    depUp = move_init = True
-                    pygame.mixer.Sound.play(bruit_mouvement)
+                    if depUp == False:
+                        depDown = depRight = depLeft = False
+                        depUp = move_init = True
+                        pygame.mixer.Sound.play(bruit_mouvement)
 
             if event.key == pygame.K_DOWN:
                 if etat == 2:
-                    depRight = depLeft = depUp = False
-                    depDown = move_init = True
-                    pygame.mixer.Sound.play(bruit_mouvement)
+                    if depDown == False:
+                        depRight = depLeft = depUp = False
+                        depDown = move_init = True
+                        pygame.mixer.Sound.play(bruit_mouvement)
 
             if event.key == pygame.K_RIGHT:
                 if etat == 2:
-                    depLeft = depUp = depDown = False
-                    depRight = move_init = True
-                    pygame.mixer.Sound.play(bruit_mouvement)
+                    if depRight == False:
+                        depLeft = depUp = depDown = False
+                        depRight = move_init = True
+                        pygame.mixer.Sound.play(bruit_mouvement)
 
             if event.key == pygame.K_LEFT:
                 if etat == 2:
-                    depRight = depDown = depUp = False
-                    depLeft = move_init = True
-                    pygame.mixer.Sound.play(bruit_mouvement)
+                    if depLeft == False:
+                        depRight = depDown = depUp = False
+                        depLeft = move_init = True
+                        pygame.mixer.Sound.play(bruit_mouvement)
+
 
             if event.key == pygame.K_RETURN:
                 couverture.fill((250,250,250))
