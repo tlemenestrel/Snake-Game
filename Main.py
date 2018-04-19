@@ -93,7 +93,7 @@ while(continuer):
         
             if event.key == pygame.K_UP:
                 if etat == 2:
-                    if depUp == False:
+                    if depUp == False and move_init == True:
                         depDown = depRight = depLeft = False
                         depUp = move_init = True
                         pygame.mixer.Sound.play(bruit_mouvement)
@@ -189,7 +189,6 @@ while(continuer):
             pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
             fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
             fenetre.blit(head, (x[0], y[0]))
-            pygame.display.flip()
         
         if depDown:
         
@@ -197,7 +196,6 @@ while(continuer):
             pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
             fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
             fenetre.blit(head, (x[0], y[0]))
-            pygame.display.flip()
         
         if depRight:
         
@@ -205,7 +203,6 @@ while(continuer):
             pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
             fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
             fenetre.blit(head, (x[0], y[0]))
-            pygame.display.flip()
         
         if depLeft:
         
@@ -213,7 +210,6 @@ while(continuer):
             pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
             fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
             fenetre.blit(head, (x[0], y[0]))
-            pygame.display.flip()
 
         #On vérifie si le serpent ne touche pas les bords
         if x[0] < fenetre_rect.left: 
@@ -230,8 +226,7 @@ while(continuer):
             etat = 3
         
         #On colle le fruit
-        fenetre.blit(fruit, position_fruit)  
-        pygame.display.flip()
+        fenetre.blit(fruit, position_fruit)
         
         #On vérifie si le serpent touche un fruit
         for i in range(0,length):
