@@ -34,7 +34,7 @@ def collision(x1,y1,x2,y2, size_snake, size_fruit):
 def disp_score(score):
     font = pygame.font.SysFont(None, 25)
     text = font.render("Score: "+str(score), True, (0, 0, 0))
-    fenetre.blit(text,(600,0)) 
+    fenetre.blit(text,(400,0)) 
 
 #Initialisation de la bibliothèques Pygame
 pygame.init()
@@ -43,16 +43,11 @@ pygame.init()
 bruit_mouvement = pygame.mixer.Sound("jump.wav")
 
 #Création de la fenêtre
-fenetre = pygame.display.set_mode((700, 700))
+fenetre = pygame.display.set_mode((500, 500))
 fenetre_rect = fenetre.get_rect()
 
 #On donne un nom à la fenêtre
 pygame.display.set_caption("Snake")
-
-#On démarre la musique
-musique= pygame.mixer.music.load("musique.mp3") 
-pygame.mixer.music.play()
-bruitage = pygame.mixer.music.load("bruitage.waw")
 
 #On charge un fond blanc avec lequel on remplit la fenêtre
 couverture = pygame.Surface(fenetre.get_size())
@@ -100,22 +95,22 @@ while(continuer):
             if event.key == pygame.K_UP:
                 depDown = depRight = depLeft = False
                 depUp = move_init = True
-		pygame.mixer.Sound.play(bruit_mouvement)
+                pygame.mixer.Sound.play(bruit_mouvement)
 		
             if event.key == pygame.K_DOWN:
             	depRight = depLeft = depUp = False
             	depDown = move_init = True
-		pygame.mixer.Sound.play(bruit_mouvement)
+            	pygame.mixer.Sound.play(bruit_mouvement)
 		
             if event.key == pygame.K_RIGHT:
             	depLeft = depUp = depDown = False
             	depRight = move_init = True
-		pygame.mixer.Sound.play(bruit_mouvement)
+            	pygame.mixer.Sound.play(bruit_mouvement)
 		
             if event.key == pygame.K_LEFT:
             	depRight = depDown = depUp = False
             	depLeft = move_init = True
-		pygame.mixer.Sound.play(bruit_mouvement)
+            	pygame.mixer.Sound.play(bruit_mouvement)
 		
     #On donne les coordonnées du morceau précédent a chaque morecau 
     for i in range(length-1,0,-1):
@@ -180,7 +175,6 @@ while(continuer):
         	position_fruit.y = randint(1,20)*step
         	length = length + 2
         	score = score + 1
-        	bruitage.play()
                 
     #On vérifie si la tête du serpent ne touche pas le corps
     for i in range(2,length):
