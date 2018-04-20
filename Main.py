@@ -38,6 +38,13 @@ def disp_score(score):
     text = font.render("Score: "+str(score), True, (0, 0, 0))
     fenetre.blit(text,(400,0)) 
 
+def disp_text(info,x,y):
+    font18 = pygame.font.SysFont(None, 18)
+    text = font18.render((info),True,(0,0,0))
+    textX = text.get_rect().width
+    textY = text.get_rect().height
+    fenetre.blit(text,((x - (textX / 2)),(y - (textY / 2))))
+
 #Initialisation de la bibliothèques Pygame
 pygame.init()
 
@@ -140,7 +147,22 @@ while(continuer):
                     position_fruit.x = randint(2,10)*step
                     position_fruit.y = randint(2,10)*step
                     score = 0
-                    etat = 2       
+                    etat = 2
+
+            #On permet au joueur de retourner au menu de depart apres avoir joué
+            if event.key == pygame.K_SPACE:
+                if etat == 3:
+                    depUp = depDown = depRight = depLeft = move_init = False
+                    length = 3
+                    for i in range (2, 1000):
+                        x[i] = y[i] = -100
+                    x[0] = y[0] = 0
+                    x[1] = -5
+                    y[1] = 5
+                    position_fruit.x = randint(2,10)*step
+                    position_fruit.y = randint(2,10)*step
+                    score = 0
+                    etat = 1
 
     if etat == 1:
 
@@ -153,11 +175,7 @@ while(continuer):
         pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
 
         #On explique au joueur comment entre dans le jeu 
-        font18 = pygame.font.SysFont(None, 18)
-        text = font18.render("Appuyez sur entrer pour jouer",True,(0,0,0))
-        textX = text.get_rect().width
-        textY = text.get_rect().height
-        fenetre.blit(text,((390 - (textX / 2)),(320 - (textY / 2))))
+        disp_text("Appuyez sur Entrer pour jouer",390,320)
 
         #On explique au jouer quels touches utiliser pour jouer
         text = font18.render("Commandes de jeu :",True,(0,0,0))
@@ -255,23 +273,17 @@ while(continuer):
         pygame.draw.rect(fenetre,(0,200,0),(150,150,200,200),5)
 
         #On place le score de la partie terminé dans le cadre
-        font18 = pygame.font.SysFont(None, 18)
-        text = font18.render(("Score: " + str(score)),True,(0,0,0))
-        textX = text.get_rect().width
-        textY = text.get_rect().height
-        fenetre.blit(text,((250 - (textX / 2)),(200 - (textY / 2))))
+        disp_text("Score: " + str(score),250,180)
 
         #On place le meilleur score parmi les parties réalisés dans le cadre
-        text = font18.render(("Meilleur score :" + str(highscore)),True,(0,0,0))
-        textX = text.get_rect().width
-        textY = text.get_rect().height
-        fenetre.blit(text,((250 - (textX / 2)),(250 - (textY / 2))))
+        disp_text("Meilleur score : " + str(highscore),250,230)
 
         #On explique au joueur comment rejouer 
-        text = font18.render(("Pour rejouer appuyez sur Entrer !"),True,(0,0,0))
-        textX = text.get_rect().width
-        textY = text.get_rect().height
-        fenetre.blit(text,((250 - (textX / 2)),(300 - (textY / 2))))
+        disp_text("Pour rejouer appuyez sur Entrer !",250, 280)
+
+        #On explique au joueur comment retourner au menu
+        disp_text("Pour retourner au menu appuyez", 250,305)
+        disp_text("sur la barre d'espace !",250,320)
 
         pygame.display.flip()
 
