@@ -246,7 +246,7 @@ while(continuer):
         pygame.display.flip()
 
         #On ajoute un retard à la boucle
-        time.sleep (60.0 / 1000.0)
+        time.sleep (75.0 / 1000.0)
 
     if etat == 3:
         
