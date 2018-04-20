@@ -186,28 +186,24 @@ while(continuer):
         if depUp:
         
             y[0] = y[0] - step #On déplace sa position
-            pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
             fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
             fenetre.blit(head, (x[0], y[0]))
         
         if depDown:
         
             y[0] = y[0] + step #On déplace sa position
-            pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
             fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
             fenetre.blit(head, (x[0], y[0]))
         
         if depRight:
         
             x[0] = x[0] + step #On déplace sa position
-            pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
             fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
             fenetre.blit(head, (x[0], y[0]))
         
         if depLeft:
         
             x[0] = x[0] - step #On déplace sa position
-            pygame.time.delay(10) #On ajoute un délai pour donner un déplacement plus naturel au serpent
             fenetre.blit(couverture, (0,0)) #On re-colle l'ensemble
             fenetre.blit(head, (x[0], y[0]))
 
@@ -250,7 +246,7 @@ while(continuer):
         pygame.display.flip()
 
         #On ajoute un retard à la boucle
-        time.sleep (50.0 / 1000.0)
+        time.sleep (60.0 / 1000.0)
 
     if etat == 3:
         
