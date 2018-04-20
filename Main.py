@@ -12,6 +12,7 @@ from random import randint
 import pygame
 import time
 
+#Définition des variables intervenant dans le jeu
 x = [0]
 y = [0]
 step = 23 
