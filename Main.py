@@ -180,6 +180,7 @@ while(continuer):
         disp_text("Appuyez sur Entrer pour jouer",390,320)
 
         #Explication au joueur de quels touches utiliser pour jouer
+        font18 = pygame.font.SysFont(None, 18)
         text = font18.render("Commandes de jeu :",True,(0,0,0))
         fenetre. blit(text, (300,360))
         controls = pygame.image.load("keypad.png").convert_alpha()
