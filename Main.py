@@ -184,7 +184,7 @@ while(continuer):
         text = font18.render("Commandes de jeu :",True,(0,0,0))
         fenetre. blit(text, (300,360))
         controls = pygame.image.load("keypad.png").convert_alpha()
-        controls = pygame.transform.scale(controls, (100,100))
+        controls = pygame.transform.scale(controls, (110,100))
         fenetre.blit(controls, (340,380))
         pygame.display.flip()                                        
     
