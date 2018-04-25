@@ -208,7 +208,7 @@ while(continuer):
         if depUp:
         
             y[0] = y[0] - step #Déplacement de la position de la tête
-            fenetre.blit(couverture, (0,0)) #Chargement du fond d'écrant et de la tête
+            fenetre.blit(couverture, (0,0)) #Chargement du fond d'écran et de la tête
             fenetre.blit(head, (x[0], y[0]))
         
         if depDown:
