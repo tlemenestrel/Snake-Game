@@ -271,6 +271,7 @@ while(continuer):
         #Ajout d'un retard à la boucle pour obtenir la vitesse de déplacement voulue
         time.sleep (75.0 / 1000.0)
 
+    #Etat de la partie terminée
     if etat == 3:
         
         #Chargement d'un cadre pour donner les informations au joueur
