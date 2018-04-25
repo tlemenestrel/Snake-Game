@@ -243,7 +243,7 @@ while(continuer):
             pygame.mixer.Sound.play(bruit_collision)
             etat = 3
         
-        #Charegement du fruit
+        #Chargement du fruit
         fenetre.blit(fruit, position_fruit)
         
         #Verification de si le serpent touche un fruit
