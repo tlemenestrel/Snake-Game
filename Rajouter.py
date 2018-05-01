@@ -239,18 +239,24 @@ while(continuer):
             controls = pygame.image.load("keypad.png").convert_alpha()
             controls = pygame.transform.scale(controls, (110,100))   
             fenetre.blit(controls, (340,380))
+            text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
+            fenetre.blit(text,(305,475))
             pygame.display.flip() 
 
         if menu == 3:
             #Carré est déssiné pour donner les informations au joueur
             pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
             pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
+
             disp_text("Vitesse de déplacement :",390,320)
             pygame.draw.rect(fenetre,(235,51,36),(320,350,size_barre,15))
             pygame.draw.rect(fenetre,(0,200,0),(320,350,140,15),3)
             disp_text("Appuez sur <- et -> pour modifier",390,380)
-            disp_text("Appuyez sur R pour les paramètres",390,430)
-            disp_text("initiaux",390,450)
+            disp_text("Appuyez sur R pour les",390,430)
+            disp_text("paramètres initiaux",390,450)
+            font15 = pygame.font.SysFont(None, 15)
+            text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
+            fenetre.blit(text,(305,475))
             pygame.display.flip()  
 
     
