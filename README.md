@@ -14,4 +14,9 @@ Ce programme est un jeu inspiré du célèbre jeu "Snake". Dans celui-ci, on dé
 -Time version 15.3
 -Random version 9.6
 
+Licenses des sons et des images :
+
+-Ils ont tous été télécharger sur des sites d'images sans license
+-Rajouter les noms des auteurs des images et sons CC-BY
+
 
