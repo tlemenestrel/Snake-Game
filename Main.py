@@ -62,7 +62,7 @@ fenetre = pygame.display.set_mode((500, 500))
 fenetre_rect = fenetre.get_rect()
 
 #La fenêtre de jeu est nommée
-pygame.display.set_caption("Snake")
+pygame.display.set_caption("Snack")
 
 #Chargement d'un fond blanc avec lequel la fenêtre est remplie
 couverture = pygame.Surface(fenetre.get_size())
@@ -96,30 +96,30 @@ pygame.display.flip()
 #Variable qui continue la boucle principale du jeu
 continuer = True
 depUp = depDown = depRight = depLeft = move_init = False
-
+#Changement de la variable de déplacement 
 while(continuer):
     for event in pygame.event.get(): #Récupération des différents évènements du joueur
         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):#Vérification de si le joueur ne quitte pas le jeu
             continuer = False
         if event.type == pygame.KEYDOWN:#Vérification de si le joueur appuye sur une des touches du clavier
 
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP: 
                 if etat == 2:
                     if depUp == False and move_init == True:
-                        if depDown == True:
+                        if depDown == True:# Empêchement d'aller dans la direction opposée
                             depUp == False
                         else:
-                            depDown = depRight = depLeft = False
+                            depDown = depRight = depLeft = False #Changement de la variable de déplacement
                             depUp = move_init = True
                             pygame.mixer.Sound.play(bruit_mouvement)
 
             if event.key == pygame.K_DOWN:
                 if etat == 2:
-                    if depDown == False:
+                    if depDown == False:# Empêchement d'aller dans la direction opposée
                         if depUp == True:
                             depDown == False
                         else:
-                            depRight = depLeft = depUp = False
+                            depRight = depLeft = depUp = False #Changement de la variable de déplacement 
                             depDown = move_init = True
                             pygame.mixer.Sound.play(bruit_mouvement)
 
@@ -129,11 +129,11 @@ while(continuer):
                         size_barre = size_barre + 10
                         vitesse = vitesse - 7.5
                 if etat == 2:
-                    if depRight == False:
+                    if depRight == False: # Empêchement d'aller dans la direction opposée
                         if depLeft == True:
                             depRight == False
                         else:
-                            depLeft = depUp = depDown = False
+                            depLeft = depUp = depDown = False #Changement de la variable de déplacement
                             depRight = move_init = True
                             pygame.mixer.Sound.play(bruit_mouvement)
 
@@ -144,14 +144,15 @@ while(continuer):
                         vitesse = vitesse + 7.5
                 if etat == 2:
                     if depLeft == False:
-                        if depRight == True:
+                        if depRight == True:# Empêchement d'aller dans la direction opposée
                             depLeft == False
                         else:
-                            depRight = depDown = depUp = False
+                            depRight = depDown = depUp = False #Changement de la variable de déplacement
                             depLeft = move_init = True
                             pygame.mixer.Sound.play(bruit_mouvement)
-
+            
             if event.key == pygame.K_RETURN:
+                #Remplissage de l'écran en blanc pour effacer les parties du corps précédentes
                 couverture.fill((250,250,250))
                 fenetre.blit(couverture, (0,0))
                 pygame.display.flip()
@@ -178,9 +179,9 @@ while(continuer):
                 if etat == 1:
                     if menu == 2 or menu == 3:
                         menu = 1
-                if etat == 3:
-                    depUp = depDown = depRight = depLeft = move_init = False
-                    length = 3
+                if etat == 3: #Si le joueur perd
+                    depUp = depDown = depRight = depLeft = move_init = False #Les variables de déplacement deviennent fausses
+                    length = 3 #Remise de tous les paramètres du jeu à ceux de départ pour la nouvelle partie
                     for i in range (2, 1000):
                         x[i] = y[i] = -100
                     x[0] = y[0] = 0
@@ -191,15 +192,15 @@ while(continuer):
                     score = 0
                     etat = menu = 1
 
-            if event.key == pygame.K_c:
+            if event.key == pygame.K_c: #Accès à la page des contrôles
                 if etat == 1 and menu == 1:
                     menu = 2
 
-            if event.key == pygame.K_p:
+            if event.key == pygame.K_p:#Accès à la page des paramètres
                 if etat == 1 and menu == 1:
                     menu = 3
 
-            if event.key == pygame.K_r:
+            if event.key == pygame.K_r:#Possibilité de remettre la vitesse à sa valeur initiale
                 if etat == 1 and menu == 3:
                     size_barre = 70
                     vitesse = 75.0
