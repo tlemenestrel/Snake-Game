@@ -4,7 +4,7 @@
 # Snake - v0.1
 # Ce script est un programme du jeu snake
 # License libre CC
-# Colin Laganier - Thomas Le Menestrel - 2018.03.27
+# Colin Laganier - Thomas Le Menestrel - 2018.05.02
 
 #Importation des bibliothèques nécessaires
 from pygame.locals import *
@@ -15,11 +15,14 @@ import time
 #Définition des variables intervenant dans le jeu
 x = [0]
 y = [0]
-step = 23 
+step = 23
 score = 0
 highscore = 0
 length = 3
 etat = 1
+menu = 1
+size_barre = 70
+vitesse = 75.0
 
 #Création d'un grand nombre de rangs au sein de la liste pour éventuellement agrandir le corps du serpent jusqu'à 1000 sections
 for i in range(0,1000):
@@ -33,11 +36,11 @@ def collision(x1,y1,x2,y2, size_snake, size_fruit):
             return True
         return False
 
-#Fonction qui affiche le score du joueur sur la page de jeu 
+#Fonction qui affiche le score du joueur sur la page de jeu
 def disp_score(score):
     font = pygame.font.SysFont(None, 25)
     text = font.render("Score: "+str(score), True, (0, 0, 0))
-    fenetre.blit(text,(400,0)) 
+    fenetre.blit(text,(400,0))
 
 #Fonction qui centre le texte donnée entre deux coordonnées
 def disp_text(info,x,y):
@@ -79,7 +82,7 @@ fruit = pygame.transform.scale(fruit, (35,35))
 position_1 = head.get_rect()
 position_fruit = fruit.get_rect()
 
-#Insertion des coordonnées de la tête dans leur liste respective 
+#Insertion des coordonnées de la tête dans leur liste respective
 x[0] = position_1.x
 y[0] = position_1.y
 
@@ -99,40 +102,60 @@ while(continuer):
         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):#Vérification de si le joueur ne quitte pas le jeu
             continuer = False
         if event.type == pygame.KEYDOWN:#Vérification de si le joueur appuye sur une des touches du clavier
-        
+
             if event.key == pygame.K_UP:
                 if etat == 2:
                     if depUp == False and move_init == True:
-                        depDown = depRight = depLeft = False
-                        depUp = move_init = True
-                        pygame.mixer.Sound.play(bruit_mouvement)
+                        if depDown == True:
+                            depUp == False
+                        else:
+                            depDown = depRight = depLeft = False
+                            depUp = move_init = True
+                            pygame.mixer.Sound.play(bruit_mouvement)
 
             if event.key == pygame.K_DOWN:
                 if etat == 2:
                     if depDown == False:
-                        depRight = depLeft = depUp = False
-                        depDown = move_init = True
-                        pygame.mixer.Sound.play(bruit_mouvement)
+                        if depUp == True:
+                            depDown == False
+                        else:
+                            depRight = depLeft = depUp = False
+                            depDown = move_init = True
+                            pygame.mixer.Sound.play(bruit_mouvement)
 
             if event.key == pygame.K_RIGHT:
+                if etat == 1 and menu == 3:
+                    if size_barre >=0 and size_barre <=130:
+                        size_barre = size_barre + 10
+                        vitesse = vitesse - 7.5
                 if etat == 2:
                     if depRight == False:
-                        depLeft = depUp = depDown = False
-                        depRight = move_init = True
-                        pygame.mixer.Sound.play(bruit_mouvement)
+                        if depLeft == True:
+                            depRight == False
+                        else:
+                            depLeft = depUp = depDown = False
+                            depRight = move_init = True
+                            pygame.mixer.Sound.play(bruit_mouvement)
 
             if event.key == pygame.K_LEFT:
+                if etat == 1 and menu == 3:
+                    if size_barre >=10 and size_barre <=140:
+                        size_barre = size_barre - 10
+                        vitesse = vitesse + 7.5
                 if etat == 2:
                     if depLeft == False:
-                        depRight = depDown = depUp = False
-                        depLeft = move_init = True
-                        pygame.mixer.Sound.play(bruit_mouvement)
+                        if depRight == True:
+                            depLeft == False
+                        else:
+                            depRight = depDown = depUp = False
+                            depLeft = move_init = True
+                            pygame.mixer.Sound.play(bruit_mouvement)
 
             if event.key == pygame.K_RETURN:
                 couverture.fill((250,250,250))
                 fenetre.blit(couverture, (0,0))
                 pygame.display.flip()
-                
+
                 if etat == 1:
                     etat = 2
 
@@ -152,6 +175,9 @@ while(continuer):
 
             #Définition d'une commande pour retourner au menu de depart apres avoir joué
             if event.key == pygame.K_SPACE:
+                if etat == 1:
+                    if menu == 2 or menu == 3:
+                        menu = 1
                 if etat == 3:
                     depUp = depDown = depRight = depLeft = move_init = False
                     length = 3
@@ -163,39 +189,85 @@ while(continuer):
                     position_fruit.x = randint(2,10)*step
                     position_fruit.y = randint(2,10)*step
                     score = 0
-                    etat = 1
-                    
-    #Etat du Menu principale 
+                    etat = menu = 1
+
+            if event.key == pygame.K_c:
+                if etat == 1 and menu == 1:
+                    menu = 2
+
+            if event.key == pygame.K_p:
+                if etat == 1 and menu == 1:
+                    menu = 3
+
+            if event.key == pygame.K_r:
+                if etat == 1 and menu == 3:
+                    size_barre = 70
+                    vitesse = 75.0
+
+    #Etat du Menu principale
     if etat == 1:
 
         #Chargement du fond d'écran du menu
         couverture_menu = pygame.image.load("fond2.png").convert()
         fenetre.blit(couverture_menu, (0,0))
 
-        #Carré est déssiné pour donner les informations au joueur
-        pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
-        pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
+        if menu == 1:
+            #Carré est déssiné pour donner les informations au joueur
+            pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
+            pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
 
-        #Explication au joueur de comment entre dans le jeu 
-        disp_text("Appuyez sur Entrer pour jouer",390,320)
+            #Explication au joueur de comment entre dans le jeu
+            disp_text("Appuyez sur Entrer pour jouer",390,320)
 
-        #Explication au joueur de quels touches utiliser pour jouer
-        font18 = pygame.font.SysFont(None, 18)
-        text = font18.render("Commandes de jeu :",True,(0,0,0))
-        fenetre. blit(text, (300,360))
-        controls = pygame.image.load("keypad.png").convert_alpha()
-        controls = pygame.transform.scale(controls, (110,100))
-        fenetre.blit(controls, (340,380))
-        pygame.display.flip()                                        
-    
+            #Explication au joueur de quels touches utiliser pour jouer
+            disp_text("Appuyez sur C pour voir les",390,360)
+            disp_text("commandes",390,380)
+            disp_text("Appuyez sur P pour les",390,420)
+            disp_text("paramètres",390,440)
+            pygame.display.flip()
+
+        if menu == 2:
+            #Carré est déssiné pour donner les informations au joueur
+            pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
+            pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
+
+            #Explication
+            disp_text("Commandes de jeu :",390,320)
+            font18 = pygame.font.SysFont(None, 18)
+            text = font18.render("Déplacements :",True,(0,0,0))
+            fenetre. blit(text, (300,360))
+            controls = pygame.image.load("keypad.png").convert_alpha()
+            controls = pygame.transform.scale(controls, (110,100))
+            fenetre.blit(controls, (340,380))
+            font15 = pygame.font.SysFont(None, 15)
+            text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
+            fenetre.blit(text,(305,475))
+            pygame.display.flip()
+
+        if menu == 3:
+            #Carré est déssiné pour donner les informations au joueur
+            pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
+            pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
+
+            disp_text("Vitesse de déplacement :",390,320)
+            pygame.draw.rect(fenetre,(235,51,36),(320,350,size_barre,15))
+            pygame.draw.rect(fenetre,(0,200,0),(320,350,140,15),3)
+            disp_text("Appuez sur <- et -> pour modifier",390,380)
+            disp_text("Appuyez sur R pour les",390,430)
+            disp_text("paramètres initiaux",390,450)
+            font15 = pygame.font.SysFont(None, 15)
+            text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
+            fenetre.blit(text,(305,475))
+            pygame.display.flip()
+
     #Etat du jeu en cours
     if etat == 2:
 
         #Chargement des objets dans le jeu
         fenetre.blit(corps1, (-5,5))
         fenetre.blit(head, (0,0))
-            
-        #Coordonnées du morceau précédent données à chaque morceau 
+
+        #Coordonnées du morceau précédent données à chaque morceau
         for i in range(length-1,0,-1):
             x[i] = x[i-1]
             y[i] = y[i-1]
@@ -203,34 +275,34 @@ while(continuer):
         couverture.fill((250, 250, 250)) #Remplissage de l'écran en blanc pour effacer les parties du corps précédentes
         for i in range(0,length): #Chargement du corps du serpent
             couverture.blit(corps1, (x[i], y[i]))
-        
-        # Modification de la position de la tête du serpent       
+
+        # Modification de la position de la tête du serpent
         if depUp:
-        
+
             y[0] = y[0] - step #Déplacement de la position de la tête
             fenetre.blit(couverture, (0,0)) #Chargement du fond d'écran, de la tête
             fenetre.blit(head, (x[0], y[0]))
-        
+
         if depDown:
-        
-            y[0] = y[0] + step 
-            fenetre.blit(couverture, (0,0)) 
+
+            y[0] = y[0] + step
+            fenetre.blit(couverture, (0,0))
             fenetre.blit(head, (x[0], y[0]))
-        
+
         if depRight:
-        
+
             x[0] = x[0] + step
-            fenetre.blit(couverture, (0,0)) 
+            fenetre.blit(couverture, (0,0))
             fenetre.blit(head, (x[0], y[0]))
-        
+
         if depLeft:
-        
+
             x[0] = x[0] - step
-            fenetre.blit(couverture, (0,0)) 
+            fenetre.blit(couverture, (0,0))
             fenetre.blit(head, (x[0], y[0]))
 
         #Verification que le serpent ne touche pas les bords
-        if x[0] < fenetre_rect.left: 
+        if x[0] < fenetre_rect.left:
             pygame.mixer.Sound.play(bruit_collision)
             etat = 3
         if x[0] > fenetre_rect.bottom:
@@ -242,10 +314,10 @@ while(continuer):
         if y[0] > fenetre_rect.bottom:
             pygame.mixer.Sound.play(bruit_collision)
             etat = 3
-        
+
         #Chargement du fruit
         fenetre.blit(fruit, position_fruit)
-        
+
         #Verification de si le serpent touche un fruit
         for i in range(0,length):
             if collision(position_fruit.x, position_fruit.y, x[i], y[i],35,25):
@@ -257,19 +329,19 @@ while(continuer):
                 		position_fruit.y = randint(1,20)*step
                 length = length + 2
                 score = score + 1
-                    
+
         #Vérification de si la tête du serpent touche un morceau du corps
         for i in range(2,length):
                 if collision(x[0], y[0], x[i], y[i],0,0) and move_init:
                     pygame.mixer.Sound.play(bruit_collision)
                     etat = 3
-            
+
         #Ajout du score à l'écran
         disp_score(score)
         #Definition du meilleur score parmi les parties jouées
         if score > highscore:
             highscore = score
-        
+
         pygame.display.flip()
 
         #Ajout d'un retard à la boucle pour obtenir la vitesse de déplacement voulue
@@ -277,7 +349,7 @@ while(continuer):
 
     #Etat de la partie terminée
     if etat == 3:
-        
+
         #Chargement d'un cadre pour donner les informations au joueur
         pygame.draw.rect(fenetre,(0,255,0),(150,150,200,200))
         pygame.draw.rect(fenetre,(0,200,0),(150,150,200,200),5)
@@ -288,7 +360,7 @@ while(continuer):
         #Chargement du meilleur score parmi les parties réalisés dans le cadre
         disp_text("Meilleur score : " + str(highscore),250,230)
 
-        #Explication au joueur pour comment rejouer 
+        #Explication au joueur pour comment rejouer
         disp_text("Pour rejouer appuyez sur Entrer !",250, 280)
 
         #Explication au joueur pour comment retourner au menu
