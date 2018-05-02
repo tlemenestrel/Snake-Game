@@ -4,7 +4,7 @@
 # Snake - v0.1
 # Ce script est un programme du jeu snake
 # License libre CC
-# Colin Laganier - Thomas Le Menestrel - 2018.05.02
+# Colin Laganier - Thomas Le Menestrel - 2018.03.27
 
 #Importation des bibliothèques nécessaires
 from pygame.locals import *
@@ -231,7 +231,7 @@ while(continuer):
             pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
             pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
 
-            #Explication
+            #Explication au joueur comment jouer
             disp_text("Commandes de jeu :",390,320)
             font18 = pygame.font.SysFont(None, 18)
             text = font18.render("Déplacements :",True,(0,0,0))
@@ -240,6 +240,8 @@ while(continuer):
             controls = pygame.transform.scale(controls, (110,100))
             fenetre.blit(controls, (340,380))
             font15 = pygame.font.SysFont(None, 15)
+
+            #Explication au joueur comment sortir des menus
             text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
             fenetre.blit(text,(305,475))
             pygame.display.flip()
@@ -249,6 +251,7 @@ while(continuer):
             pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
             pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
 
+            #Mise en place du curseur pour modifier la vitesse du serpent
             disp_text("Vitesse de déplacement :",390,320)
             pygame.draw.rect(fenetre,(235,51,36),(320,350,size_barre,15))
             pygame.draw.rect(fenetre,(0,200,0),(320,350,140,15),3)
@@ -278,25 +281,21 @@ while(continuer):
 
         # Modification de la position de la tête du serpent
         if depUp:
-
             y[0] = y[0] - step #Déplacement de la position de la tête
             fenetre.blit(couverture, (0,0)) #Chargement du fond d'écran, de la tête
             fenetre.blit(head, (x[0], y[0]))
 
         if depDown:
-
             y[0] = y[0] + step
             fenetre.blit(couverture, (0,0))
             fenetre.blit(head, (x[0], y[0]))
 
         if depRight:
-
             x[0] = x[0] + step
             fenetre.blit(couverture, (0,0))
             fenetre.blit(head, (x[0], y[0]))
 
         if depLeft:
-
             x[0] = x[0] - step
             fenetre.blit(couverture, (0,0))
             fenetre.blit(head, (x[0], y[0]))
