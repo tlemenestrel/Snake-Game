@@ -309,13 +309,13 @@ while(continuer):
         if x[0] < fenetre_rect.left:
             pygame.mixer.Sound.play(bruit_collision)
             etat = 3
-        if x[0] > fenetre_rect.bottom:
+        if x[0] + 35 > fenetre_rect.right:
             pygame.mixer.Sound.play(bruit_collision)
             etat = 3
         if y[0] < fenetre_rect.top:
             pygame.mixer.Sound.play(bruit_collision)
             etat = 3
-        if y[0] > fenetre_rect.bottom:
+        if y[0] + 35 > fenetre_rect.bottom:
             pygame.mixer.Sound.play(bruit_collision)
             etat = 3
 
