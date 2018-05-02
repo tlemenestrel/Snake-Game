@@ -233,16 +233,18 @@ while(continuer):
             pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
 
             #Explication au joueur comment jouer
-            disp_text("Commandes de jeu :",390,320)
+            disp_text("Commandes de jeu :",390,310)
             font18 = pygame.font.SysFont(None, 18)
             text = font18.render("Déplacements :",True,(0,0,0))
-            fenetre. blit(text, (300,360))
+            fenetre. blit(text, (300,330))
             controls = pygame.image.load("keypad.png").convert_alpha()
-            controls = pygame.transform.scale(controls, (110,100))
-            fenetre.blit(controls, (340,380))
-            font15 = pygame.font.SysFont(None, 15)
+            controls = pygame.transform.scale(controls, (90,80))
+            fenetre.blit(controls, (340,350))
+            disp_text("Appuyez sur échap pour quitter le",390,445)
+            disp_text("jeu",390,460)
 
             #Explication au joueur comment sortir des menus
+            font15 = pygame.font.SysFont(None, 15)
             text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
             fenetre.blit(text,(305,475))
             pygame.display.flip()
@@ -260,6 +262,8 @@ while(continuer):
             disp_text("Appuyez sur R pour les",390,430)
             disp_text("paramètres initiaux",390,450)
             font15 = pygame.font.SysFont(None, 15)
+
+            #Explication au joueur comment sortir des menus
             text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
             fenetre.blit(text,(305,475))
             pygame.display.flip()
