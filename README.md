@@ -14,9 +14,11 @@ Ce programme est un jeu inspiré du célèbre jeu "Snake". Dans celui-ci, on dé
 -Time version 15.3
 -Random version 9.6
 
-Licenses des sons et des images :
+# Licenses des sons et des images :
 
--Ils ont tous été télécharger sur des sites d'images sans license
--Rajouter les noms des auteurs des images et sons CC-BY
+-Tête du serpent : CC BY 3.0, https://piq.codeus.net/picture/293531/Snake-head
+-Corps du serpent : transformé a partir de l'image de la tête (conforme à la license)
+-Bruit mouvement : CC0 1.0, https://freesound.org/people/jeckkech/sounds/391658/
+-Bruit collision : CC BY 3.0, https://freesound.org/people/ProjectsU012/sounds/333785/
 
 
