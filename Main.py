@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Snake - v0.1
+# Snake - v2.1
 # Ce script est un programme du jeu snake
 # License libre CC
-# Colin Laganier - Thomas Le Menestrel - 2018.03.27
+# Colin Laganier - Thomas Le Menestrel - 2018.05.08
 
 #Importation des bibliothèques nécessaires
 from pygame.locals import *
