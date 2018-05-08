@@ -104,8 +104,8 @@ while(continuer):
         if event.type == pygame.KEYDOWN:#Vérification de si le joueur appuye sur une des touches du clavier
 
             if event.key == pygame.K_UP: 
-                if etat == 2:
-                    if depUp == False and move_init == True:
+                if etat == 2: #Vérification de si le programme est à l'état de jeu
+                    if depUp == False and move_init == True:#Vérification que la direction soit différente et annonce que les déplacement on débutés
                         if depDown == True:# Empêchement d'aller dans la direction opposée
                             depUp == False
                         else:
