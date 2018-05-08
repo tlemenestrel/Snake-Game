@@ -62,7 +62,7 @@ fenetre = pygame.display.set_mode((500, 500))
 fenetre_rect = fenetre.get_rect()
 
 #La fenêtre de jeu est nommée
-pygame.display.set_caption("Snack")
+pygame.display.set_caption("Snake")
 
 #Chargement d'un fond blanc avec lequel la fenêtre est remplie
 couverture = pygame.Surface(fenetre.get_size())
