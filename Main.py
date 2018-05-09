@@ -96,14 +96,14 @@ pygame.display.flip()
 #Variable qui continue la boucle principale du jeu
 continuer = True
 depUp = depDown = depRight = depLeft = move_init = False
-#Changement de la variable de déplacement 
+#Changement de la variable de déplacement
 while(continuer):
     for event in pygame.event.get(): #Récupération des différents évènements du joueur
         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):#Vérification de si le joueur ne quitte pas le jeu
             continuer = False
         if event.type == pygame.KEYDOWN:#Vérification de si le joueur appuye sur une des touches du clavier
 
-            if event.key == pygame.K_UP: 
+            if event.key == pygame.K_UP:
                 if etat == 2: #Vérification de si le programme est à l'état de jeu
                     if depUp == False and move_init == True:#Vérification que la direction soit différente et annonce que les déplacement on débutés
                         if depDown == True:# Empêchement d'aller dans la direction opposée
@@ -119,7 +119,7 @@ while(continuer):
                         if depUp == True:
                             depDown == False
                         else:
-                            depRight = depLeft = depUp = False #Changement de la variable de déplacement 
+                            depRight = depLeft = depUp = False #Changement de la variable de déplacement
                             depDown = move_init = True
                             pygame.mixer.Sound.play(bruit_mouvement)
 
@@ -150,7 +150,7 @@ while(continuer):
                             depRight = depDown = depUp = False #Changement de la variable de déplacement
                             depLeft = move_init = True
                             pygame.mixer.Sound.play(bruit_mouvement)
-            
+
             if event.key == pygame.K_RETURN:
                 #Remplissage de l'écran en blanc pour effacer les parties du corps précédentes
                 couverture.fill((250,250,250))
@@ -177,7 +177,7 @@ while(continuer):
             #Définition d'une commande pour retourner au menu de depart apres avoir joué
             if event.key == pygame.K_SPACE:
                 if etat == 1:
-                    if menu == 2 or menu == 3:
+                    if menu == 2 or menu == 3 or menu == 4:
                         menu = 1
                 if etat == 3: #Si le joueur perd
                     depUp = depDown = depRight = depLeft = move_init = False #Les variables de déplacement deviennent fausses
@@ -204,6 +204,9 @@ while(continuer):
                 if etat == 1 and menu == 3:
                     size_barre = 70
                     vitesse = 75.0
+            if event.key == pygame.K_z:#Accès à la page des crédits
+                if etat == 1 and menu == 1:
+                    menu = 4
 
     #Etat du Menu principale
     if etat == 1:
@@ -225,6 +228,9 @@ while(continuer):
             disp_text("commandes",390,380)
             disp_text("Appuyez sur P pour les",390,420)
             disp_text("paramètres",390,440)
+            font14 = pygame.font.SysFont(None, 14)
+            text = font14.render("Appuyez sur W pour les crédits",True,(0,0,0))
+            fenetre. blit(text, (320,470))
             pygame.display.flip()
 
         if menu == 2:
@@ -264,6 +270,24 @@ while(continuer):
             font15 = pygame.font.SysFont(None, 15)
 
             #Explication au joueur comment sortir des menus
+            text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
+            fenetre.blit(text,(305,475))
+            pygame.display.flip()
+
+        if menu == 4:
+            #Carré est déssiné pour donner les informations au joueur
+            pygame.draw.rect(fenetre,(0,255,0),(290,290,200,200))
+            pygame.draw.rect(fenetre,(0,200,0),(290,290,200,200),5)
+
+            #Représentation des informations
+            disp_text("Crédits:",390,310)
+            disp_text("Image tête du serpent: MegaPixel",390,350)
+            disp_text("Bruit du mouvement: Jeckkech",390,380)
+            disp_text("Bruit de collision: ProjectsU012",390,410)
+            disp_text("Voir README.md pour les liens",390,440)
+
+            #Explication au joueur comment sortir des menus
+            font15 = pygame.font.SysFont(None, 15)
             text = font15.render(("Appuyez sur espace pour retourner"),True,(0,0,0))
             fenetre.blit(text,(305,475))
             pygame.display.flip()
