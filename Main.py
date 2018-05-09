@@ -3,7 +3,7 @@
 
 # Snake - v2.1
 # Ce script est un programme du jeu snake
-# License libre CC
+# License libre CC BY 4.0
 # Colin Laganier - Thomas Le Menestrel - 2018.05.08
 
 #Importation des bibliothèques nécessaires
