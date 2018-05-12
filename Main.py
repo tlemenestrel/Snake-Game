@@ -204,7 +204,7 @@ while(continuer):
                 if etat == 1 and menu == 3:
                     size_barre = 70
                     vitesse = 75.0
-            if event.key == pygame.K_z:#Accès à la page des crédits
+            if event.key == pygame.K_w:#Accès à la page des crédits
                 if etat == 1 and menu == 1:
                     menu = 4
 
