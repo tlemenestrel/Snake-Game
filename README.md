@@ -18,7 +18,6 @@ Ce programme est un jeu inspiré du célèbre jeu "Snake". Dans celui-ci, on dé
 
 -Tête du serpent : CC BY 3.0, https://piq.codeus.net/picture/293531/Snake-head <br>
 -Corps du serpent : transformé a partir de l'image de la tête (conforme à la license)<br>
--Bruit mouvement : CC0 1.0, https://freesound.org/people/jeckkech/sounds/391658/<br>
 -Bruit collision : CC BY 3.0, https://freesound.org/people/ProjectsU012/sounds/333785/
 
 
