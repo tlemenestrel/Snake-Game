@@ -17,6 +17,7 @@ Ce programme est un jeu inspiré du célèbre jeu "Snake". Dans celui-ci, on dé
 # Licenses des sons et des images :
 
 -Tête du serpent : CC BY 3.0, https://piq.codeus.net/picture/293531/Snake-head <br>
+-Pomme : CC BY ND, https://www.newgrounds.com/art/view/thexxxreaper/pixel-apple<br>
 -Corps du serpent : transformé a partir de l'image de la tête (conforme à la license)<br>
 -Bruit collision : CC BY 3.0, https://freesound.org/people/ProjectsU012/sounds/333785/
 
