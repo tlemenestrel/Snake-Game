@@ -305,7 +305,7 @@ while(continuer):
             y[i] = y[i-1]
 
         couverture.fill((250, 250, 250)) #Remplissage de l'écran en blanc pour effacer les parties du corps précédentes
-        for i in range(0,length): #Chargement du corps du serpent
+        for i in range(1,length): #Chargement du corps du serpent
             couverture.blit(corps1, (x[i], y[i]))
 
         # Modification de la position de la tête du serpent
@@ -347,16 +347,15 @@ while(continuer):
         fenetre.blit(fruit, position_fruit)
 
         #Verification de si le serpent touche un fruit
-        for i in range(0,length):
-            if collision(position_fruit.x, position_fruit.y, x[i], y[i],35,25):
-                position_fruit.x = randint(1,20)*step   #Nouvelles coordonnées du fruit lorsqu'il est "mangé"
-                position_fruit.y = randint(1,20)*step
-                for j in range(0,length):
-                	while collision(position_fruit.x, position_fruit.y, x[j], y[j],35,25):
-                		position_fruit.x = randint(1,20)*step   #Nouvelles coordonnées du fruit si les premieres insérés ont les même coordonnées que le corps du serpent
-                		position_fruit.y = randint(1,20)*step
-                length = length + 2
-                score = score + 1
+        if collision(x[0], y[0], position_fruit.x, position_fruit.y,35,25):
+            position_fruit.x = randint(1,20)*step   #Nouvelles coordonnées du fruit lorsqu'il est "mangé"
+            position_fruit.y = randint(1,20)*step
+            for j in range(0,length):
+            	while collision(position_fruit.x, position_fruit.y, x[j], y[j],35,25):
+            		position_fruit.x = randint(1,20)*step   #Nouvelles coordonnées du fruit si les premieres insérés ont les même coordonnées que le corps du serpent
+            		position_fruit.y = randint(1,20)*step
+            length = length + 2
+            score = score + 1
 
         #Vérification de si la tête du serpent touche un morceau du corps
         for i in range(2,length):
