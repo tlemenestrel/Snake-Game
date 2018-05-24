@@ -358,10 +358,10 @@ while(continuer):
             score = score + 1
 
         #Vérification de si la tête du serpent touche un morceau du corps
-        for i in range(2,length):
-                if collision(x[0], y[0], x[i], y[i],0,0) and move_init:
-                    pygame.mixer.Sound.play(bruit_collision)
-                    etat = 3
+        
+        if collision(x[0], y[0], x[i], y[i],0,0) and move_init:
+            pygame.mixer.Sound.play(bruit_collision)
+            etat = 3
 
         #Ajout du score à l'écran
         disp_score(score)
